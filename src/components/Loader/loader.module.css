@@ -1,0 +1,14 @@
+
+.loaderBar {
+  background: linear-gradient(90deg, #9ed7ff, #62ff42, #00fffb);
+  animation: color-move 2s cubic-bezier(0.56, 0, 0.15, 0.99) infinite;
+}
+
+@keyframes color-move {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}

@@ -1,0 +1,41 @@
+.navItems,.logout > p,.profile>div {
+  /* color: red; */
+  background: linear-gradient(to right, black 50%, #155dfc 50%);
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  transition: background-position 300ms ease-in-out;
+}
+
+.navItems:hover,.logout > p:hover,.profile > div:hover {
+  background-position: -100% 0;
+}
+.signup {
+  background: linear-gradient(to left, black 50%, #155dfc 50%);
+}
+.login {
+  background: linear-gradient(to left, black 50%, #fff 50%);
+}
+.profile {
+  background: linear-gradient(to left, white 50%, #16A34A 50%);
+}
+.logout {
+  background: linear-gradient(to left, #D32F2F 50%, #ffffff 50%);
+}
+.logout:hover{
+  transition: background-position 300ms ease-in-out;
+}
+.logout > p {
+  background-image: linear-gradient(to right, #D32F2F 50%, white 50%);
+}
+.profile > div {
+  background-image: linear-gradient(to right, white 50%, #16A34A 50%);
+}
+.btn {
+  background-size: 200% 100%;
+  transition: background-position 300ms ease-in-out;
+}
+.btn:hover {
+  background-position: -100% 0;
+}

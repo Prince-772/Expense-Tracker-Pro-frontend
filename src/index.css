@@ -1,0 +1,47 @@
+* {
+  box-sizing: border-box;
+}
+.animate-on-scroll{
+  animation: appear ease-in;
+  animation-timeline: view();
+  animation-range: entry 0 cover 30%;
+}
+
+@keyframes appear {
+  0%{
+    transform: translateY(100px);
+    scale: 0.5;
+  }
+  100%{
+    transform: translateY(0);
+    scale: 1;
+  }
+}
+.animate-colorful {
+  background: linear-gradient(90deg,  #2575fc,#30cb11, #00c6ff);
+  background-size: 400%;
+  background-repeat: no-repeat;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: color-move 5s linear infinite alternate;
+}
+
+@keyframes color-move {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+
