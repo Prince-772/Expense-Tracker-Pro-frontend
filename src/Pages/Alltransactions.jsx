@@ -1,8 +1,8 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import ProfileModule from "../components/profileModel";
 import ConfirmMessage from "../components/authMessages/ConfirmMessage";
 import ErrorMessage from "../components/authMessages/ErrorMessage";
-import { ChevronDown, Plus, Search } from "lucide-react";
+import { ArrowUpDown, ChevronDown, Plus, Search } from "lucide-react";
 import Loader from "../components/Loader/loader";
 import { AuthContext, MessageContext } from "../Context/Auth.context";
 import SuccessMessage from "../components/authMessages/SuccessMessage";
@@ -70,7 +70,14 @@ function Transactions() {
   }, [user]);
   console.log("Transactions Component Rendered");
 
+  const [localLoading, setLocalLoading] = useState(false)
   const [openCardId, setOpenCardId] = useState(null);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [filter, setFilter] = useState("all")
+  const [isSortOpen, setIsSortOpen] = useState(false)
+  const [sort, setSort] = useState("latest")
+  const [search, setSearch] = useState("")
+  const [updatedtxn, setUpdatedtxn] = useState(allTransactions)
 
   const handleDeleteClick = useCallback(
     (id) => {
@@ -80,6 +87,31 @@ function Transactions() {
     },
     [setConfirmAction, setAuthConfirm]
   );
+
+  useEffect(() => {
+    setLocalLoading(true);
+
+    let updatedTransactions = search
+      ? allTransactions?.filter(txn => 
+          txn.remarks.toLowerCase().includes(search.toLowerCase().trim())
+        )
+      : allTransactions; // Searching
+
+    updatedTransactions = updatedTransactions?.filter(txn => 
+      filter === "all" || filter === txn.transaction_type
+    ); // Filtering
+
+    updatedTransactions = updatedTransactions ? [...updatedTransactions] : null;
+    
+    if (sort === "oldest") updatedTransactions.reverse();
+    else if (sort === "lowest first") updatedTransactions.sort((e1, e2) => e1.amount - e2.amount);
+    else if (sort === "highest first") updatedTransactions.sort((e1, e2) => e2.amount - e1.amount);
+
+    setUpdatedtxn(updatedTransactions);
+
+    setTimeout(()=>{setLocalLoading(false)},0);
+}, [allTransactions, search, filter, sort]);
+
 
   return (
     <div className="flex min-h-[calc(100vh-56px)] md:min-h-[calc(100vh-64px)] bg-gray-100">
@@ -99,35 +131,68 @@ function Transactions() {
           onCancel={(e) => handleOnCancel(e)}
         />
       )}
-      {(loading || logoutLoading || editLoading || addLoading) && <Loader />}
+      {(loading || logoutLoading || editLoading || addLoading) || localLoading && <Loader />}
       <ProfileModule user={user} />
 
-      <main className="flex-1 px-3 lg:px-6 py-6">
-        <div className="bg-white p-4 shadow-md rounded-lg flex flex-col gap-3">
-          <h2 className="text-lg font-semibold mb-1">Your Transactions</h2>
-          <div className="h-10 flex justify-between gap-2">
+      <main className="flex-1 px-1 lg:px-6 py-6">
+        <div className="bg-white px-2 py-2 md:p-4 shadow-md rounded-lg flex flex-col gap-3">
+          <h2 className="text-lg font-semibold mb-1 text-center md:text-left">Your Transactions</h2>
+          <div className="h-8 md:h-10 flex justify-between gap-2">
             {/* Search Input */}
-            <div className="relative flex items-center w-[min(80%,400px)] border border-gray-300 rounded-md bg-white shadow-sm">
-              <Search size={18} className="absolute left-3 text-black" />
+            <div className="relative flex items-center w-[min(80%,400px)] border border-gray-300 rounded-md bg-white focus-within:shadow-sm focus-within:md:shadow-md">
+              <Search size={18} className="absolute left-1 md:left-3 text-black" />
               <input
                 type="text"
+                onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search..."
-                className="w-full h-10 pl-10 pr-3 text-sm outline-none rounded-md focus:shadow-md shadow-gray-300"
+                className="w-full h-10 pl-6 md:pl-10 pr-3 text-sm outline-none rounded-md shadow-gray-300"
               />
             </div>
-
-            {/* Filter Button */}
-            <div className="flex items-center gap-1 border border-gray-300 rounded-md px-3 py-2 bg-white cursor-pointer shadow-sm hover:bg-gray-100 transition">
-              <p className="text-sm font-medium text-gray-700">Filter</p>
-              <ChevronDown size={18} className="text-gray-600" />
+            <div className="flex gap-2">
+              {/* Sorting Button */}
+              <div
+                onClick={() => setIsSortOpen(prev => !prev)}
+                className="z-1 flex relative items-center gap-1 border border-gray-300 rounded-md px-1 md:px-3 py-2 bg-white cursor-pointer shadow-sm hover:bg-gray-100 transition">
+                <p className="text-sm font-medium text-gray-700 hidden md:block">{sort.charAt(0).toUpperCase() + sort.slice(1)}</p>
+                <ArrowUpDown className={`text-gray-600 w-4 h-4 md:w-4.5 md:h-4.5 ${isSortOpen ? "rotate-540" : ""} transition-all duration-300`} />
+                <div className={`dropdown absolute top-full right-1/2 bg-white shadow-gray-500 flex flex-col rounded-sm overflow-hidden ${isSortOpen ? "max-h-30 max-w-100 shadow-[0_0_2px_1px]" : "max-h-0 max-w-0 border-none"} transition-all duration-300 ease-in-out `}>
+                  {["Latest", "Oldest", "Lowest First", "Highest First"].map(opt => (
+                    <button
+                      key={opt}
+                      onClick={() => setSort(opt.toLocaleLowerCase())}
+                      className={`${sort === opt.toLowerCase() ? "bg-green-100" : "hover:bg-blue-100"} px-3 py-[1px] text-sm cursor-pointer w-full text-nowrap`}
+                    >
+                      {opt}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              {/* Filter Button */}
+              <div
+                onClick={() => setIsFilterOpen(prev => !prev)}
+                className="z-1 flex relative items-center gap-1 border border-gray-300 rounded-md px-1 md:px-3 py-2 bg-white cursor-pointer shadow-sm hover:bg-gray-100 transition">
+                <p className="text-xs md:text-sm font-medium text-gray-700">{filter.charAt(0).toUpperCase() + filter.slice(1)}</p>
+                <ChevronDown className={`text-gray-600 w-4 h-4 md:w-4.5 md:h-4.5 ${isFilterOpen ? "rotate-540" : ""} transition-all duration-300`} />
+                <div className={`dropdown absolute top-full right-1/2 bg-white shadow-gray-500 flex flex-col rounded-sm overflow-hidden ${isFilterOpen ? "max-h-20 max-w-100 shadow-[0_0_2px_1px]" : "max-h-0 max-w-0 border-none"} transition-all duration-300 ease-in-out `}>
+                  {["All", "Expense", "Income"].map(opt => (
+                    <button
+                      key={opt}
+                      onClick={() => setFilter(opt.toLocaleLowerCase())}
+                      className={`${filter === opt.toLowerCase() ? "bg-green-100" : "hover:bg-blue-100"} px-3 py-[1px] text-sm cursor-pointer w-full`}
+                    >
+                      {opt}
+                    </button>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
           <hr className="text-gray-700" />
           <div className="transaction-list">
-            {!allTransactions || allTransactions.length === 0 ? (
+            {!updatedtxn || updatedtxn.length === 0 ? (
               <div className="text-lg">No Transactions</div>
             ) : (
-              allTransactions?.map((transaction) => (
+              updatedtxn.map((transaction) => (
                 <AlltransactionCard
                   key={transaction._id}
                   id={transaction._id}
