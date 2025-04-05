@@ -131,7 +131,7 @@ function Transactions() {
           onCancel={(e) => handleOnCancel(e)}
         />
       )}
-      {(loading || logoutLoading || editLoading || addLoading) || localLoading && <Loader />}
+      {(loading || logoutLoading || editLoading || addLoading || localLoading) && <Loader />}
       <ProfileModule user={user} />
 
       <main className="flex-1 px-1 lg:px-6 py-6">
