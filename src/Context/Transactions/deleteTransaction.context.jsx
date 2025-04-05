@@ -20,7 +20,8 @@ const DeleteTransactionProvider = ({children}) => {
       setAuthError(null);
       setAuthSuccess(null)
       try {
-        await axios.delete(`http://localhost:8000/api/transactions/${txn_id}`, {
+        const api = import.meta.env.VITE_BACKEND_TRANSACTIONS_API
+        await axios.delete(`${api}/${txn_id}`, {
           withCredentials: true,
         });
         setAuthSuccess("Transaction Deleted");

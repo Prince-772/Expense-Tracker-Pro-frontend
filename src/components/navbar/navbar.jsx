@@ -22,7 +22,7 @@ const NavBar = () => {
   const getLocation = location.pathname;
   useEffect(() => {
     setdashboardTabOpen(getLocation.replace("/", ""));
-    setTabOpen(getLocation.replace("/", ""));
+    setTabOpen(getLocation.replace("/", "") || "home");
   }, [getLocation])
 
 
@@ -45,7 +45,7 @@ const NavBar = () => {
         <Logo />
         <div className="nav ml-3 lg:ml-5 text-[15px] font-[inter] text-black hidden lg:flex relative">
           <div className="flex items-center gap-4 w-full justify-between">
-            {getLocation === "/"
+            {["/","/features", "/contact","/about"].some(path=> path === getLocation)
               ? [
                 { path: "/", label: "Home" },
                 { path: "/features", label: "Features" },
@@ -107,7 +107,7 @@ const NavBar = () => {
         )}
 
         <div className="btns h-full hidden md:flex gap-3 lg:gap-5 items-center text-lg font-[roboto] font-semibold">
-          {getLocation === "/" ? (
+          {["/","/features", "/contact","/about"].some(path=> path === getLocation) ? (
             <>
               <Link
                 to="/signup"

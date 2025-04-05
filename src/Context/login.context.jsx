@@ -18,12 +18,12 @@ const LoginProvider = ({ children }) => {
       setLoading(true);
       setAuthError(null);
       try {
-        const response = await axios.post(
-          "http://localhost:8000/api/users/login",
+        const api = import.meta.env.VITE_BACKEND_USERS_API
+        await axios.post(
+          `${api}/login`,
           formData,
           { withCredentials: true }
         );
-        // console.log(response);
         
         getUser()
         navigate("/dashboard");

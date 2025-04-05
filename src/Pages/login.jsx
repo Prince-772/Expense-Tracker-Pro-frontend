@@ -10,8 +10,8 @@ import Loader from "../components/Loader/loader";
 const Login = () => {
   console.log("Login is re-rendered");
 
-  const { user,} = useContext(AuthContext);
-  const {  AuthError,setAuthError} = useContext(MessageContext);
+  const { user, } = useContext(AuthContext);
+  const { AuthError, setAuthError } = useContext(MessageContext);
   const [showPassword, setShowPassword] = useState(false);
   const {
     register,
@@ -32,7 +32,7 @@ const Login = () => {
     [setAuthError]
   );
 
-  
+
   if (user) return <Navigate to="/dashboard" replace />;
 
   return (
@@ -65,11 +65,11 @@ const Login = () => {
                 <input
                   id="email"
                   type="email"
+                  autoComplete="email"
                   {...register("email", {
                     required: "Email is required",
                     pattern: {
-                      value:
-                        /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+                      value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
                       message: "Invalid email address",
                     },
                   })}
@@ -91,10 +91,12 @@ const Login = () => {
                     {...register("password", {
                       required: "Please enter your password",
                     })}
+                    name="password"
                     placeholder="Password"
+                    autoComplete="current-password"
                     className="py-1 px-3 pr-8 text-lg rounded-md outline-none border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all w-full"
                   />
-                  
+
                   <button
                     type="button"
                     onClick={togglePassword}
@@ -105,8 +107,8 @@ const Login = () => {
                   </button>
                 </div>
                 {errors.password && (
-                    <p className="text-red-500">{errors.password.message}</p>
-                  )}
+                  <p className="text-red-500">{errors.password.message}</p>
+                )}
               </div>
 
               <div className="footer flex justify-center gap-1">

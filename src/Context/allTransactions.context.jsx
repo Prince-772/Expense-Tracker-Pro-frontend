@@ -33,8 +33,8 @@ const AllTransactionsProvider = ({ children }) => {
     setLoading(true);
     setAuthError(null);
     try {
-      const response = await axios.get(
-        "http://localhost:8000/api/transactions",
+      const api = import.meta.env.VITE_BACKEND_TRANSACTIONS_API
+      const response = await axios.get(api,
         {
           withCredentials: true,
         }

@@ -52,7 +52,7 @@ const ProfileModule = ({ user }) => {
 
         <div className="avtar+name h-40 md:h-60 py-5 flex justify-center items-center flex-col">
           <div className="avtar aspect-square border-2 font-[roboto] w-20 md:w-30 rounded-[50%] flex items-center justify-center text-3xl md:text-5xl bg-green-500">
-            B
+            {user?.name.charAt(0).toUpperCase()}
           </div>
           <div className="name mt-3 text-lg md:text-xl font-semibold font-[inter] overflow-x-scroll text-nowrap w-full text-center scrollbar-hide  ">
             {user?.name}
@@ -63,7 +63,7 @@ const ProfileModule = ({ user }) => {
           <div className="email font-semibold font-[inter] overflow-x-scroll text-nowrap w-full scrollbar-hide ">
             Email : {user?.email}
           </div>
-          <div className="profesion font-semibold font-[inter] overflow-x-scroll text-nowrap w-full scrollbar-hide ">
+          <div className="profesion hidden font-semibold font-[inter] overflow-x-scroll text-nowrap w-full scrollbar-hide ">
             Profession : Student
           </div>
         </div>

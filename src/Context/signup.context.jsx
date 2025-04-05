@@ -12,13 +12,15 @@ const SignupProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const {getUser} = useContext(DashboardContext)
   const navigate = useNavigate()
+
   const handleSignUp = useCallback(
     async (formData) => {
       setLoading(true);
       setAuthError(null);
       try {
-        const response = await axios.post(
-          "http://localhost:8000/api/users/register",
+        const api = import.meta.env.VITE_BACKEND_USERS_API
+        await axios.post(
+          `${api}/register`,
           formData,
           { withCredentials: true }
         );

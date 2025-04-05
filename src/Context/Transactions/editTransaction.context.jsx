@@ -17,7 +17,8 @@ const EditTransactionProvider = ({children}) => {
     setAuthError(null);
     setAuthSuccess(null)
     try {
-      await axios.patch("http://localhost:8000/api/transactions",
+      const api = import.meta.env.VITE_BACKEND_USERS_API
+      await axios.patch(`${api}`,
         transaction, { withCredentials: true }
       )
       setConfirmAction("editTransaction");

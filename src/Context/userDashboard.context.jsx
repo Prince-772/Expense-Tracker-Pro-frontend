@@ -25,8 +25,9 @@ const DashboardProvider = ({ children }) => {
     setLoading(true);
     setAuthError(null);
     try {
+      const api = import.meta.env.VITE_BACKEND_USERS_API
       const response = await axios.get(
-        "http://localhost:8000/api/users/dashboard",
+        `${api}/dashboard`,
         { withCredentials: true }
       );
       const user = response.data.userInfo;

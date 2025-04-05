@@ -26,8 +26,9 @@ const ResetPasswordProvider = ({ children }) => {
       setUserName(null);
 
       try {
+        const api = import.meta.env.VITE_BACKEND_USERS_API
         const response = await axios.post(
-          "http://localhost:8000/api/users/forgotpassword",
+          `${api}/forgotpassword`,
           email
         );
 
@@ -52,8 +53,9 @@ const ResetPasswordProvider = ({ children }) => {
       setAuthSuccess(null);
       setPasswordUpdated(true);
       try {
+        const api = import.meta.env.VITE_BACKEND_USERS_API
         const response = await axios.post(
-          "http://localhost:8000/api/users/resetpassword",
+          `${api}/resetpassword`,
           { email: userEmail, ...formData }
         );
 

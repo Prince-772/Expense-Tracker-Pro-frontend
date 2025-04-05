@@ -19,13 +19,14 @@ const LogOutProvider = ({ children }) => {
   const handleLogOut = useCallback(async () => {
     setLogoutLoading(true);
     try {
+      const api = import.meta.env.VITE_BACKEND_USERS_API
       await axios.post(
-        "http://localhost:8000/api/users/logout",
+        `${api}/logout`,
         {},
         { withCredentials: true }
       );
 
-      await axios.get("http://localhost:8000/api/users/dashboard", {
+      await axios.get(`${api}/dashboard`, {
         withCredentials: true,
       });
     } catch (err) {

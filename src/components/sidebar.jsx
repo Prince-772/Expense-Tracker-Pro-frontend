@@ -34,7 +34,7 @@ const Sidebar = () => {
 
   useEffect(() => {
     setdashboardTabOpen(path.replace("/", ""));
-    setTabOpen(path.replace("/", ""));
+    setTabOpen(path.replace("/", "") || "home");
   }, [path])
   return (
     <>
@@ -55,8 +55,49 @@ const Sidebar = () => {
       >
         {/* Sidebar Links */}
         <nav className="flex flex-col gap-4 items-center mt-20">
-          {path !== "/"
+          {["/","/features", "/contact","/about"].some(path_=> path_ === path)
             ? [
+              {
+                path: "/",
+                label: "Home",
+                icon: <Home size={20} color="white" />,
+              },
+              {
+                path: "/features",
+                label: "Features",
+                icon: <Sparkle size={20} color="white" />,
+              },
+              {
+                path: "/contact",
+                label: "Contact",
+                icon: <Mail size={20} color="white" />,
+              },
+              {
+                path: "/about",
+                label: "About",
+                icon: <Info size={20} color="white" />,
+              },
+            ].map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                onClick={(e) => {
+                  if (location.pathname === item.path)
+                    e.preventDefault();
+                  else setIsSidebarOpen(false)
+                }}
+                className={`w-[80%] md:text-lg font-semibold text-white py-2 rounded-lg bg-gradient-to-r
+                    ${tabOpen === item.label.toLocaleLowerCase()
+                    ? "from-green-400 to-green-600"
+                    : "from-blue-400 to-blue-600 hover:to-blue-700"
+                  } shadow-md 
+                    transition-colors duration-200 flex justify-center items-center gap-1`}
+              >
+                {item.icon}
+                {item.label}
+              </Link>
+            ))
+            : [
               {
                 path: "/dashboard",
                 label: "Dashboard",
@@ -101,49 +142,32 @@ const Sidebar = () => {
                 {item.icon}
                 {item.label}
               </Link>
-            ))
-            : [
-              {
-                path: "/",
-                label: "Home",
-                icon: <Home size={20} color="white" />,
-              },
-              {
-                path: "/features",
-                label: "Features",
-                icon: <Sparkle size={20} color="white" />,
-              },
-              {
-                path: "/contact",
-                label: "Contact",
-                icon: <Mail size={20} color="white" />,
-              },
-              {
-                path: "/about",
-                label: "About",
-                icon: <Info size={20} color="white" />,
-              },
-            ].map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                onClick={(e) => {
-                  if (location.pathname === item.path)
-                    e.preventDefault();
-                  else setIsSidebarOpen(false)
-                }}
-                className={`w-[80%] md:text-lg font-semibold text-white py-2 rounded-lg bg-gradient-to-r
-                    ${tabOpen === item.label.toLocaleLowerCase()
-                    ? "from-green-400 to-green-600"
-                    : "from-blue-400 to-blue-600 hover:to-blue-700"
-                  } shadow-md 
-                    transition-colors duration-200 flex justify-center items-center gap-1`}
-              >
-                {item.icon}
-                {item.label}
-              </Link>
             ))}
-          {path !== "/" ? (
+          {["/","/features", "/contact","/about"].some(path_=> path_ === path)? (
+            <>
+            <hr className="w-[95%]" />
+            <Link
+              onClick={() => setIsSidebarOpen(false)}
+              to="/login"
+              className="w-[80%] md:text-lg font-semibold text-white py-2 rounded-lg 
+                bg-gradient-to-r from-blue-400 to-blue-600 hover:to-blue-700 shadow-md 
+                transition-colors duration-200 flex justify-center items-center gap-1"
+            >
+              <LogIn size={20} color="white" />
+              Login
+            </Link>
+            <Link
+              to="/signup"
+              onClick={() => setIsSidebarOpen(false)}
+              className="w-[80%] md:text-lg font-semibold text-white py-2 rounded-lg 
+                bg-gradient-to-r from-blue-400 to-blue-600 hover:to-blue-700 shadow-md 
+                transition-colors duration-200 flex justify-center items-center gap-1"
+            >
+              <UserPlus size={20} color="white" />
+              Signup
+            </Link>
+          </>
+          ) : (
             <>
               <hr className="w-[95%]" />
               <button
@@ -170,30 +194,6 @@ const Sidebar = () => {
                 <LogOut size={20} color="white" />
                 Logout
               </button>
-            </>
-          ) : (
-            <>
-              <hr className="w-[95%]" />
-              <Link
-                onClick={() => setIsSidebarOpen(false)}
-                to="/login"
-                className="w-[80%] md:text-lg font-semibold text-white py-2 rounded-lg 
-                  bg-gradient-to-r from-blue-400 to-blue-600 hover:to-blue-700 shadow-md 
-                  transition-colors duration-200 flex justify-center items-center gap-1"
-              >
-                <LogIn size={20} color="white" />
-                Login
-              </Link>
-              <Link
-                to="/signup"
-                onClick={() => setIsSidebarOpen(false)}
-                className="w-[80%] md:text-lg font-semibold text-white py-2 rounded-lg 
-                  bg-gradient-to-r from-blue-400 to-blue-600 hover:to-blue-700 shadow-md 
-                  transition-colors duration-200 flex justify-center items-center gap-1"
-              >
-                <UserPlus size={20} color="white" />
-                Signup
-              </Link>
             </>
           )}
         </nav>

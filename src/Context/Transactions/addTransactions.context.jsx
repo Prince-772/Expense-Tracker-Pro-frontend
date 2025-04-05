@@ -20,8 +20,9 @@ const AddTransactionProvider = ({ children }) => {
     setAuthError(null);
     setAuthSuccess(null)
     try {
+      const env = import.meta.env;
       const {amount,remarks,type} = transaction
-      const api = import.meta.env.VITE_BACKEND_TRANSACTIONS_API + (type === "income" ? import.meta.env.VITE_ADD_INCOME_ROUTE : import.meta.env.VITE_ADD_EXPENSE_ROUTE);
+      const api = env.VITE_BACKEND_TRANSACTIONS_API + (type === "income" ? env.VITE_ADD_INCOME_ROUTE : env.VITE_ADD_EXPENSE_ROUTE);
       await axios.post(api,
         {amount,remarks}, { withCredentials: true }
       )

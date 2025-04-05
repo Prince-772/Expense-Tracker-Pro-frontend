@@ -20,15 +20,17 @@ import Transactions from "./Pages/Alltransactions";
 import AllTransactionsProvider from "./Context/allTransactions.context";
 import EditTransactionProvider from "./Context/Transactions/editTransaction.context"
 import AddTransactionProvider from "./Context/Transactions/addTransactions.context";
+import AddingSoon from "./Pages/addingSoon";
+import NotFound from "./Pages/notFound";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     children: [
       { path: "/", element: <Home /> },
-      { path: "/features", element: <div>Contact Adding Soon</div> },
-      { path: "/contact", element: <div>Contact Adding Soon</div> },
-      { path: "/about", element: <div>Contact Adding Soon</div> },
+      { path: "/features", element: <AddingSoon /> },
+      { path: "/contact", element: <AddingSoon /> },
+      { path: "/about", element: <AddingSoon /> },
       {
         path: "/login",
         element: (
@@ -62,15 +64,11 @@ const router = createBrowserRouter([
         ),
       },
       { path: "/dashboard", element: <Dashboard /> },
-      {
-        path: "/transactions",
-        element: (
-
-
-          <Transactions />
-        ),
-      },
-      { path: "*", element: <Navigate to="/" /> },
+      { path: "/transactions", element:<Transactions /> },
+      { path: "/budgets", element: <AddingSoon /> },
+      { path: "/reports", element: <AddingSoon /> },
+      { path: "/subscriptions", element: <AddingSoon /> },
+      { path: "*", element: <NotFound /> },
     ],
   },
 ]);
