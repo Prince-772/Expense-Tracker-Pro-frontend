@@ -41,7 +41,7 @@ function Transactions() {
     handleCloseSuccess,
   } = useContext(AllTransactionsContext);
 
-  const { deleteTransaction } = useContext(DeleteTransactionContext);
+  const { deleteTransaction, deleteLoading } = useContext(DeleteTransactionContext);
   const { handleConfirmEdit, editLoading } = useContext(EditTransactionContext);
   const { handleConfirmAdd, addLoading } = useContext(AddTransactionContext);
 
@@ -131,7 +131,7 @@ function Transactions() {
           onCancel={(e) => handleOnCancel(e)}
         />
       )}
-      {(loading || logoutLoading || editLoading || addLoading || localLoading) && <Loader />}
+      {(loading || logoutLoading || editLoading || addLoading || deleteLoading || localLoading) && <Loader />}
       <ProfileModule user={user} />
 
       <main className="flex-1 px-1 lg:px-6 py-6">
