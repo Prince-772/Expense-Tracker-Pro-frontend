@@ -35,6 +35,7 @@ const ResetPasswordProvider = ({ children }) => {
         setAuthSuccess(response.data.message);
         setUserEmail(response.data.data.email);
         setUserName(response.data.data.name);
+        setPasswordUpdated(false);
       } catch (err) {
         setAuthError(
           err.response?.data?.message || err.message || "Something went wrong"
@@ -51,7 +52,7 @@ const ResetPasswordProvider = ({ children }) => {
       setLoading(true);
       setAuthError(null);
       setAuthSuccess(null);
-      setPasswordUpdated(true);
+      setPasswordUpdated(false);
       try {
         const api = import.meta.env.VITE_BACKEND_USERS_API
         const response = await axios.post(

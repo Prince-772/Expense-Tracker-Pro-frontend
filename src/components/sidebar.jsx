@@ -89,9 +89,9 @@ const Sidebar = () => {
                 className={`w-[80%] md:text-lg font-semibold text-white py-2 rounded-lg bg-gradient-to-r
                     ${tabOpen === item.label.toLocaleLowerCase()
                     ? "from-green-400 to-green-600"
-                    : "from-blue-400 to-blue-600 hover:to-blue-700"
+                    : "from-blue-400 to-blue-600 hover:to-blue-700 active:scale-90"
                   } shadow-md 
-                    transition-colors duration-200 flex justify-center items-center gap-1`}
+                    transition-all duration-200 ease-out flex justify-center items-center gap-1`}
               >
                 {item.icon}
                 {item.label}
@@ -135,9 +135,9 @@ const Sidebar = () => {
                 className={`w-[80%] md:text-lg font-semibold text-white py-2 rounded-lg bg-gradient-to-r
             ${dashboardTabOpen === item.label.toLocaleLowerCase()
                     ? "from-green-400 to-green-600"
-                    : "from-blue-400 to-blue-600 hover:to-blue-700"
+                    : "from-blue-400 to-blue-600 hover:to-blue-700 active:scale-90"
                   } shadow-md 
-            transition-colors duration-200 flex justify-center items-center gap-1`}
+            transition-all duration-200 ease-out flex justify-center items-center gap-1`}
               >
                 {item.icon}
                 {item.label}
@@ -151,7 +151,7 @@ const Sidebar = () => {
               to="/login"
               className="w-[80%] md:text-lg font-semibold text-white py-2 rounded-lg 
                 bg-gradient-to-r from-blue-400 to-blue-600 hover:to-blue-700 shadow-md 
-                transition-colors duration-200 flex justify-center items-center gap-1"
+                transition-all ease-out active:scale-90 duration-200 flex justify-center items-center gap-1"
             >
               <LogIn size={20} color="white" />
               Login
@@ -161,7 +161,7 @@ const Sidebar = () => {
               onClick={() => setIsSidebarOpen(false)}
               className="w-[80%] md:text-lg font-semibold text-white py-2 rounded-lg 
                 bg-gradient-to-r from-blue-400 to-blue-600 hover:to-blue-700 shadow-md 
-                transition-colors duration-200 flex justify-center items-center gap-1"
+                transition-all ease-out duration-200 active:scale-90 flex justify-center items-center gap-1"
             >
               <UserPlus size={20} color="white" />
               Signup
@@ -177,7 +177,7 @@ const Sidebar = () => {
                 }}
                 className="w-[80%] md:text-lg font-semibold text-white py-2 rounded-lg 
             bg-gradient-to-r from-blue-400 to-blue-600 hover:to-blue-700 shadow-md 
-            transition-colors duration-200 flex justify-center items-center gap-1"
+            transition-all ease-out duration-200 active:scale-90 flex justify-center items-center gap-1"
               >
                 <CircleUserRound size={20} color="white" />
                 Profile
@@ -189,7 +189,7 @@ const Sidebar = () => {
                 }}
                 className="w-[80%] md:text-lg font-semibold text-white py-2 rounded-lg 
                   bg-gradient-to-r from-red-400 to-red-600 hover:to-red-700 shadow-md 
-                  transition-colors duration-200 flex justify-center items-center gap-1"
+                  transition-all ease-out duration-200 active:scale-90 flex justify-center items-center gap-1"
               >
                 <LogOut size={20} color="white" />
                 Logout

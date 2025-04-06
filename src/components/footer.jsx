@@ -22,7 +22,7 @@ const Footer = () => {
           </p>
           <Link
             to="/signup"
-            className="text-base lg:text-lg px-6 py-2 bg-blue-700 hover:bg-blue-800 text-white rounded-md mt-5 inline-block font-semibold"
+            className="text-base lg:text-lg px-6 py-2 bg-blue-700 hover:bg-blue-800 active:scale-90 transition-all duration-200 ease-out text-white rounded-md mt-5 inline-block font-semibold"
           >
             Sign Up for Free
           </Link>
@@ -41,7 +41,7 @@ const Footer = () => {
                 { label: "FAQs", link: "/about" },
                 { label: "Support", link: "/support" }
               ].map(link => (
-                <li className='text-gray-800' key={link.label}>
+                <li className='text-gray-800 hover:underline active:underline' key={link.label}>
                   <Link to={link.link}>{link.label}</Link>
                 </li>
               ))}
@@ -58,7 +58,7 @@ const Footer = () => {
                 { label: "Terms & Conditions", link: "/termsandconditions" },
                 { label: "Privacy Policy", link: "/privacypolicy" }
               ].map(link => (
-                <li className='text-gray-800' key={link.label}>
+                <li className='text-gray-800 hover:underline active:underline' key={link.label}>
                   <Link to={link.link}>{link.label}</Link>
                 </li>
               ))}
@@ -74,7 +74,7 @@ const Footer = () => {
                 { label: "X", link: "https://x.com/Prince_K772", icon: XIcon },
                 { label: "LinkedIn", link: "https://www.linkedin.com/in/prince-kushwaha-b2163032b/", icon: LinkedInIcon }
               ].map(social => (
-                <a href={social.link} target="_blank" rel="noopener noreferrer" className='flex items-center justify-center md:justify-start gap-2 text-gray-800 font-semibold' key={social.label}>
+                <a href={social.link} target="_blank" rel="noopener noreferrer" className='flex items-center justify-center md:justify-start gap-2 text-gray-800 hover:underline active:underline font-semibold' key={social.label}>
                   <img src={social.icon} alt={social.label} className='w-6 md:w-7' />
                   {social.label}
                 </a>

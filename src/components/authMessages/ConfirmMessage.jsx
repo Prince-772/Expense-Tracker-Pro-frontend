@@ -28,14 +28,14 @@ const ConfirmMessage = ({ value, onConfirm, onCancel }) => {
           <div className="flex justify-between w-full gap-3 mt-2">
             <button
               onClick={(e) => onCancel(e)}
-              className="flex-1 py-1 md:py-2 text-red-600 border border-red-500 rounded-lg bg-white hover:bg-red-500 hover:text-white transition-all duration-200 font-medium"
+              className="flex-1 py-1 md:py-2 text-red-600 border border-red-500 rounded-lg bg-white hover:bg-red-500 active:bg-red-500 hover:text-white active:text-white active:scale-90 transition-all ease-out duration-200 font-medium"
             >
               Cancel
             </button>
             <button
               ref={okBtn}
               onClick={(e) => onConfirm(e)}
-              className="flex-1 py-1 md:py-2 text-blue-600 border border-blue-500 rounded-lg bg-white hover:bg-blue-600 hover:text-white transition-all duration-200 font-medium"
+              className="flex-1 py-1 md:py-2 text-blue-600 border border-blue-500 rounded-lg bg-white active:bg-blue-600 active:text-white hover:bg-blue-600 hover:text-white active:scale-90 transition-all ease-out duration-200 font-medium"
             >
               OK
             </button>

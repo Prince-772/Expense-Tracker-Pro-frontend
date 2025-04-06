@@ -5,11 +5,14 @@
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  transition: background-position 300ms ease-in-out;
+  transition: background-position 300ms ease-in-out,transform 200ms ease;
 }
 
 .navItems:hover,.logout > p:hover,.profile > div:hover {
   background-position: -100% 0;
+}
+.navItems:active{
+  transform: scale(0.9);
 }
 .signup {
   background: linear-gradient(to left, black 50%, #155dfc 50%);
@@ -34,8 +37,11 @@
 }
 .btn {
   background-size: 200% 100%;
-  transition: background-position 300ms ease-in-out;
+  transition: background-position 300ms ease-in-out,transform 200ms ease;
 }
 .btn:hover {
   background-position: -100% 0;
+}
+.btn:active{
+  transform: scale(0.8);
 }

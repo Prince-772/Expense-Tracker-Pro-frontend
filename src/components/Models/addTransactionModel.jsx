@@ -69,7 +69,7 @@ const AddTransactionModel = ({ onAddTransaction, onCancel }) => {
                 id="type"
                 type="button"
                 onClick={() => setIsOpen(prev => !prev)}
-                className={`flex justify-between cursor-pointer items-center w-full px-4 py-1 text-lg border rounded-md bg-white shadow-sm hover:bg-gray-100 ${selected === "Expense" ? "text-red-600" : selected === "Income" ? "text-green-600" : ""}`}
+                className={`flex justify-between cursor-pointer items-center w-full px-4 py-1 text-lg border rounded-md bg-white shadow-sm hover:bg-gray-100 active:bg-gray-100 ${selected === "Expense" ? "text-red-600" : selected === "Income" ? "text-green-600" : ""}`}
               >
                 {options.includes(selected) ? selected : "Select Type"}
                 <ChevronDown size={18} className={`transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
@@ -79,12 +79,12 @@ const AddTransactionModel = ({ onAddTransaction, onCancel }) => {
 
               {/* Dropdown Menu */}
               {isOpen && (
-                <ul className="absolute w-full bg-white border rounded-md shadow-md z-10">
+                <ul className="absolute w-full bg-white border rounded-md shadow-md z-10 overflow-hidden">
                   {options.map((option) => (
                     <button
                       type="button"
                       key={option}
-                      className={`px-4 w-full py-2 cursor-pointer rounded-md hover:bg-gray-200 flex items-center justify-between ${selected === option ? "bg-blue-100" : ""
+                      className={`px-4 w-full py-2 cursor-pointer flex items-center justify-between  ${selected === option ? "bg-blue-100" : "hover:bg-gray-200 active:bg-gray-200 "
                         } ${option === "Expense" ? "text-red-500" : option === "Income" ? "text-green-700" : ""}`}
                       onClick={() => {
                         setSelected(option);
@@ -133,13 +133,13 @@ const AddTransactionModel = ({ onAddTransaction, onCancel }) => {
               type="button"
               disabled={isSubmitting}
               onClick={onCancel}
-              className="w-full hover:bg-red-500 text-red-600 hover:text-white py-2 rounded-md font-medium border border-red-600 transition">
+              className="w-full hover:bg-red-500 text-red-600 hover:text-white active:text-white active:scale-90 py-2 rounded-md font-medium border border-red-600 transition-all duration-200 ease-out">
               Cancel
             </button>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-blue-600 text-white py-2 rounded-md font-medium hover:bg-blue-700 transition">
+              className="w-full bg-blue-600 text-white py-2 rounded-md font-medium hover:bg-blue-700 active:bg-blue-700 active:scale-90 transition-all duration-200 ease-out">
               {isSubmitting ? "Adding..." : "Add"}
             </button>
           </div>

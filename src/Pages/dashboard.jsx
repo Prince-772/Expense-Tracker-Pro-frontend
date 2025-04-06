@@ -40,10 +40,14 @@ export default function Dashboard() {
 
 
   useEffect(() => {
-    if (!user) getUser()
+    const controller = new AbortController()
+    if (!user) getUser(controller.signal)
 
     return () => {
       setAddTxnOpen(false)
+      controller.abort()
+      console.log("dashboard aborting");
+      
     }
   }, [])
 
@@ -127,7 +131,7 @@ export default function Dashboard() {
         {/* Floating Add Transaction Button */}
         <button
           onClick={() => setAddTxnOpen(true)}
-          className="fixed bottom-6 right-6 bg-blue-500 hover:bg-blue-600 text-white p-4 rounded-full shadow-md shadow-gray-500 cursor-pointer">
+          className="fixed bottom-6 right-6 bg-blue-500 hover:bg-blue-600 active:bg-blue-600 active:scale-90 transition duration-300 ease-out text-white p-4 rounded-full shadow-md shadow-gray-500 cursor-pointer">
           <Plus />
         </button>
       </main>

@@ -101,7 +101,7 @@ const Login = () => {
                     type="button"
                     onClick={togglePassword}
                     aria-label="Toggle password visibility"
-                    className="absolute right-1 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 transition"
+                    className="absolute right-1 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 active:text-gray-700 transition"
                   >
                     {showPassword ? <Eye size={22} /> : <EyeOff size={22} />}
                   </button>
@@ -114,7 +114,7 @@ const Login = () => {
               <div className="footer flex justify-center gap-1">
                 <Link
                   to="/forgetpassword"
-                  className="text-blue-700 hover:underline text-sm"
+                  className="text-blue-700 hover:underline active:underline text-sm"
                 >
                   Forgot password?
                 </Link>
@@ -126,7 +126,7 @@ const Login = () => {
                 <button
                   type="submit"
                   disabled={(loading || isSubmitting)}
-                  className="w-full bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300 cursor-pointer"
+                  className="w-full bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 active:bg-blue-700 active:scale-90 transition duration-300 ease-out cursor-pointer"
                 >
                   {(loading || isSubmitting) ? "Loging in..." : "Login"}
                 </button>
@@ -136,7 +136,7 @@ const Login = () => {
 
           <div className="footer flex justify-center gap-1 text-black text-sm sm:text-base">
             <p>Don't have an account?</p>
-            <Link to="/signup" className="text-blue-700 hover:underline">
+            <Link to="/signup" className="text-blue-700 hover:underline active:underline">
               Sign up
             </Link>
           </div>

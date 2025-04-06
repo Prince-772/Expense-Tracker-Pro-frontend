@@ -66,7 +66,14 @@ function Transactions() {
   );
 
   useEffect(() => {
-    if (user && !allTransactions) getAllTransactions();
+    if (!user || allTransactions) return
+    const controller = new AbortController();
+    getAllTransactions(controller.signal);
+  
+    return () => {
+      controller.abort();
+      console.log("aborting...");
+    };
   }, [user]);
   console.log("Transactions Component Rendered");
 
@@ -152,7 +159,7 @@ function Transactions() {
               {/* Sorting Button */}
               <div
                 onClick={() => setIsSortOpen(prev => !prev)}
-                className="z-1 flex relative items-center gap-1 border border-gray-300 rounded-md px-1 md:px-3 py-2 bg-white cursor-pointer shadow-sm hover:bg-gray-100 transition">
+                className="z-1 flex relative items-center gap-1 border border-gray-300 rounded-md px-1 md:px-3 py-2 bg-white cursor-pointer shadow-sm hover:bg-gray-100 active:bg-gray-100 transition">
                 <p className="text-sm font-medium text-gray-700 hidden md:block">{sort.charAt(0).toUpperCase() + sort.slice(1)}</p>
                 <ArrowUpDown className={`text-gray-600 w-4 h-4 md:w-4.5 md:h-4.5 ${isSortOpen ? "rotate-540" : ""} transition-all duration-300`} />
                 <div className={`dropdown absolute top-full right-1/2 bg-white shadow-gray-500 flex flex-col rounded-sm overflow-hidden ${isSortOpen ? "max-h-30 max-w-100 shadow-[0_0_2px_1px]" : "max-h-0 max-w-0 border-none"} transition-all duration-300 ease-in-out `}>
@@ -160,7 +167,7 @@ function Transactions() {
                     <button
                       key={opt}
                       onClick={() => setSort(opt.toLocaleLowerCase())}
-                      className={`${sort === opt.toLowerCase() ? "bg-green-100" : "hover:bg-blue-100"} px-3 py-[1px] text-sm cursor-pointer w-full text-nowrap`}
+                      className={`${sort === opt.toLowerCase() ? "bg-green-100" : "hover:bg-blue-100 active:bg-blue-100"} px-3 py-[1px] text-sm cursor-pointer w-full text-nowrap`}
                     >
                       {opt}
                     </button>
@@ -170,7 +177,7 @@ function Transactions() {
               {/* Filter Button */}
               <div
                 onClick={() => setIsFilterOpen(prev => !prev)}
-                className="z-1 flex relative items-center gap-1 border border-gray-300 rounded-md px-1 md:px-3 py-2 bg-white cursor-pointer shadow-sm hover:bg-gray-100 transition">
+                className="z-1 flex relative items-center gap-1 border border-gray-300 rounded-md px-1 md:px-3 py-2 bg-white cursor-pointer shadow-sm hover:bg-gray-100 active:bg-gray-100 transition">
                 <p className="text-xs md:text-sm font-medium text-gray-700">{filter.charAt(0).toUpperCase() + filter.slice(1)}</p>
                 <ChevronDown className={`text-gray-600 w-4 h-4 md:w-4.5 md:h-4.5 ${isFilterOpen ? "rotate-540" : ""} transition-all duration-300`} />
                 <div className={`dropdown absolute top-full right-1/2 bg-white shadow-gray-500 flex flex-col rounded-sm overflow-hidden ${isFilterOpen ? "max-h-20 max-w-100 shadow-[0_0_2px_1px]" : "max-h-0 max-w-0 border-none"} transition-all duration-300 ease-in-out `}>
@@ -178,7 +185,7 @@ function Transactions() {
                     <button
                       key={opt}
                       onClick={() => setFilter(opt.toLocaleLowerCase())}
-                      className={`${filter === opt.toLowerCase() ? "bg-green-100" : "hover:bg-blue-100"} px-3 py-[1px] text-sm cursor-pointer w-full`}
+                      className={`${filter === opt.toLowerCase() ? "bg-green-100" : "hover:bg-blue-100 active:bg-blue-100"} px-3 py-[1px] text-sm cursor-pointer w-full`}
                     >
                       {opt}
                     </button>
@@ -228,7 +235,7 @@ function Transactions() {
         </div>
         <button
           onClick={() => setAddTxnOpen(true)}
-          className="fixed bottom-6 right-6 bg-blue-500 hover:bg-blue-600 text-white p-4 rounded-full shadow-md shadow-gray-500 cursor-pointer"
+          className="fixed bottom-6 right-6 bg-blue-500 hover:bg-blue-600 active:bg-blue-600 active:scale-90 transition duration-300 ease-out text-white p-4 rounded-full shadow-md shadow-gray-500 cursor-pointer"
         >
           <Plus />
         </button>

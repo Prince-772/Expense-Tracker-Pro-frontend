@@ -66,7 +66,7 @@ const AllTransactionCard = ({ id, type, amount, date, remarks, isOpen, onToggle,
               onToggle()
               onEditClick()
             }}
-            className="px-4 py-2 w-full hover:bg-gray-100 font-medium rounded-t-lg cursor-pointer text-gray-800 flex items-center gap-2 transition-all">
+            className="px-4 py-2 w-full hover:bg-gray-100 active:bg-gray-100 font-medium rounded-t-lg cursor-pointer text-gray-800 flex items-center gap-2 transition-all">
             <Pencil size={16} className="text-gray-600" />
             <span className="text-sm">Edit</span>
           </button>
@@ -77,7 +77,7 @@ const AllTransactionCard = ({ id, type, amount, date, remarks, isOpen, onToggle,
               onToggle()
               onDeleteClick(id);
             }}
-            className="px-4 py-2 w-full hover:bg-red-50 text-red-600 font-medium rounded-b-lg cursor-pointer flex items-center gap-2 transition-all"
+            className="px-4 py-2 w-full hover:bg-red-50 active:bg-red-100 text-red-600 font-medium rounded-b-lg cursor-pointer flex items-center gap-2 transition-all"
           >
             <Trash2 size={16} className="text-red-500" />
             <span className="text-sm">Delete</span>
@@ -94,7 +94,6 @@ export default React.memo(AllTransactionCard, (prevProps, nextProps) => {
     prevProps.id === nextProps.id &&
     prevProps.type === nextProps.type &&
     prevProps.amount === nextProps.amount &&
-    prevProps.date === nextProps.date &&
     prevProps.remarks === nextProps.remarks &&
     prevProps.isOpen === nextProps.isOpen
   );

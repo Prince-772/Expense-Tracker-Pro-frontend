@@ -27,7 +27,7 @@ const SuccessMessage = ({ value, onClose }) => {
           <button
             ref={okBtn}
             onClick={(e) => onClose(e)}
-            className="mt-2 w-1/2 py-1 md:py-2 text-green-600 border border-green-500 rounded-lg bg-white hover:bg-green-600 hover:text-white transition-all duration-200 font-medium"
+            className="mt-2 w-1/2 py-1 md:py-2 text-green-600 border border-green-500 rounded-lg bg-white hover:bg-green-600 active:bg-green-600 hover:text-white active:text-white active:scale-90 transition-all ease-out duration-200 font-medium"
           >
             OK
           </button>

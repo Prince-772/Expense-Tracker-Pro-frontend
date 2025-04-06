@@ -28,7 +28,7 @@ const AllTransactionsProvider = ({ children }) => {
   const location = useLocation();
   const navigate = useNavigate()
 
-  const getAllTransactions = useCallback(async () => {
+  const getAllTransactions = useCallback(async (signal) => {
     if (!user) return;
     setLoading(true);
     setAuthError(null);
@@ -37,6 +37,7 @@ const AllTransactionsProvider = ({ children }) => {
       const response = await axios.get(api,
         {
           withCredentials: true,
+          signal
         }
       );
       setAllTransactions(response.data.data);

@@ -39,13 +39,13 @@ const ProfileModule = ({ user }) => {
 
         <button
           onClick={() => setIsProfileOpen(false)}
-          className={`absolute z-11 cursor-pointer left-4 top-4 p-2 rounded-lg bg-red-500 text-white font-medium hover:bg-red-600 ${path === "/dashboard" ? "lg:hidden" : ""}  transition duration-300`}
+          className={`absolute z-11 cursor-pointer left-4 top-4 p-2 rounded-lg bg-red-500 text-white font-medium hover:bg-red-600 active:bg-red-600 ${path === "/dashboard" ? "lg:hidden" : ""}  transition duration-300`}
         >
           <X className="w-4 h-4 md:w-5 md:h-5" />
         </button>
         <Link
           to="/profile"
-          className="absolute px-4 z-11 right-4 top-4 py-2 rounded-lg bg-green-500 text-white font-medium hover:bg-green-600 transition duration-300 flex items-center gap-2"
+          className="absolute px-4 z-11 right-4 top-4 py-2 rounded-lg bg-green-500 text-white font-medium hover:bg-green-600 active:bg-green-600 transition duration-300 flex items-center gap-2"
         >
           <UserRoundPen className="w-4 h-4 md:w-5 md:h-5" /> <p className="hidden md:block">Edit</p>
         </Link>

@@ -12,7 +12,7 @@ const Section1 = () => {
             Take control of your finances and achieve your dreams with Expense
             Tracker Pro. Start now!
           </span>
-          <Link className=" md:block hidden bg-blue-600 text-white px-6 py-3 rounded-md text-lg font-semibold shadow-md hover:bg-blue-800 transition duration-300 font-[inter] mt-8">
+          <Link className=" md:block hidden bg-blue-600 text-white px-6 py-3 rounded-md text-lg font-semibold shadow-md hover:bg-blue-800 active:bg-green-700 transition duration-300 font-[inter] mt-8">
             Get Started
           </Link>
         </div>
@@ -20,7 +20,7 @@ const Section1 = () => {
           <img src="/images/Hero.svg" alt="" className="animate-on-scroll" />
         </div>
       </div>
-      <Link to="/signup" className=" md:hidden bg-blue-600 text-white px-6 py-3 rounded-md text-lg font-semibold shadow-md hover:bg-blue-800 transition duration-300 font-[inter] mt-10">
+      <Link to="/signup" className=" md:hidden bg-blue-600 text-white px-6 py-3 rounded-md text-lg font-semibold shadow-md hover:bg-blue-800 active:bg-green-700 transition duration-300 font-[inter] mt-10">
         Get Started
       </Link>
      
