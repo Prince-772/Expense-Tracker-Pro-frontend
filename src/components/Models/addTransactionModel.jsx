@@ -1,7 +1,7 @@
 import { Check, ChevronDown, IndianRupee } from 'lucide-react'
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-
+import styles from "./transactionModel.module.css"
 const AddTransactionModel = ({ onAddTransaction, onCancel }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [selected, setSelected] = useState("")
@@ -24,8 +24,13 @@ const AddTransactionModel = ({ onAddTransaction, onCancel }) => {
     onAddTransaction(newTxn);
 
   }, [selected, onAddTransaction]);
+  useEffect(() => {
+    document.body.style.overflow = "hidden"
+
+    return () => document.body.style.overflow = "auto"
+  }, [])
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black/30 backdrop-blur-sm z-11">
+    <div className={`fixed inset-0 flex ${styles.sep} items-center justify-center bg-gray-600/30 backdrop-blur-sm z-11 overflow-y-scroll`}>
       <main className="bg-white shadow-lg rounded-lg p-6 w-96">
         <h2 className="text-lg font-semibold text-gray-800 mb-4">Add Transaction</h2>
         <form onSubmit={handleSubmit(onSubmit)}>

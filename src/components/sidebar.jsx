@@ -36,6 +36,10 @@ const Sidebar = () => {
     setdashboardTabOpen(path.replace("/", ""));
     setTabOpen(path.replace("/", "") || "home");
   }, [path])
+  useEffect(() => {
+    if (isSidebarOpen) document.body.style.overflow = "hidden"
+    else document.body.style.overflow = "auto"
+  },[isSidebarOpen])
   return (
     <>
       {isSidebarOpen && (
@@ -51,7 +55,7 @@ const Sidebar = () => {
       ${isSidebarOpen
             ? "translate-x-0"
             : "translate-x-full md:-translate-x-[100%]"
-          }`}
+          } overflow-y-auto pb-10`}
       >
         {/* Sidebar Links */}
         <nav className="flex flex-col gap-4 items-center mt-20">
