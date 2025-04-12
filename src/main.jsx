@@ -17,11 +17,10 @@ import SignupProvider from "./Context/signup.context";
 import LoginProvider from "./Context/login.context";
 import ResetPasswordProvider from "./Context/resetPassword.context";
 import Transactions from "./Pages/Alltransactions";
-import AllTransactionsProvider from "./Context/allTransactions.context";
-import EditTransactionProvider from "./Context/Transactions/editTransaction.context"
-import AddTransactionProvider from "./Context/Transactions/addTransactions.context";
 import AddingSoon from "./Pages/addingSoon";
 import NotFound from "./Pages/notFound";
+import Reports from "./Pages/Reports/reports";
+import PieChartProvider from "./Context/Reports/piechart.context";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -64,9 +63,9 @@ const router = createBrowserRouter([
         ),
       },
       { path: "/dashboard", element: <Dashboard /> },
-      { path: "/transactions", element:<Transactions /> },
+      { path: "/transactions", element: <Transactions /> },
       { path: "/budgets", element: <AddingSoon /> },
-      { path: "/reports", element: <AddingSoon /> },
+      { path: "/reports", element: <PieChartProvider><Reports /></PieChartProvider> },
       { path: "/subscriptions", element: <AddingSoon /> },
       { path: "*", element: <NotFound /> },
     ],

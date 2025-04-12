@@ -36,7 +36,7 @@ const DashboardProvider = ({ children }) => {
       setUser(()=>user);
       setLastFiveTransaction(()=>lastFiveTransactions)
     } catch (err) {
-      if (location.pathname === "/dashboard" || location.pathname === "/transactions") {
+      if (["/dashboard","/transactions","/reports"].some(path => path === location.pathname)) {
         setAuthError(
           err.response?.data?.message ||
             err.message ||
