@@ -8,6 +8,7 @@ import Loader from '../../components/Loader/loader';
 import ErrorMessage from '../../components/authMessages/ErrorMessage';
 import { DashboardContext } from '../../Context/userDashboard.context';
 import ConfirmMessage from '../../components/authMessages/ConfirmMessage';
+import { LogOutContext } from '../../Context/logout.context';
 
 const Reports = () => {
   console.log("Reports rendered");
@@ -18,6 +19,8 @@ const Reports = () => {
     AuthConfirm
   } = useContext(MessageContext);
   const dashboardLoading = useContext(DashboardContext).loading
+  const { logoutLoading } = useContext(LogOutContext);
+
 
 
   const COLORS = ['#22c55e', '#ef4444'];
@@ -40,7 +43,7 @@ const Reports = () => {
           onConfirm={handleOnConfirm}
         />
       )}
-      {(dashboardLoading || pieLoading) && <Loader />}
+      {(dashboardLoading || pieLoading || logoutLoading) && <Loader />}
       <ProfileModule user={user} />
 
       <main className="flex-1 px-1 lg:px-6 py-6">
