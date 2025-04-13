@@ -69,15 +69,7 @@ const AllTransactionsProvider = ({ children }) => {
     [navigate, setAuthError, setConfirmAction, confirmAction]
   );
 
-  const handleOnCancel = useCallback(
-    (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      setConfirmAction(null);
-      setAuthConfirm(null);
-    },
-    [setAuthConfirm, setConfirmAction]
-  );
+
   const handleCloseSuccess = useCallback(
     (e) => {
       e.preventDefault();
@@ -102,7 +94,6 @@ const AllTransactionsProvider = ({ children }) => {
       addTxnOpen,
       setAddTxnOpen,
       handleCloseError,
-      handleOnCancel,
       handleCloseSuccess,
     }),
     [
@@ -115,7 +106,6 @@ const AllTransactionsProvider = ({ children }) => {
       addTxnOpen,
       setAddTxnOpen,
       handleCloseError,
-      handleOnCancel,
       handleCloseSuccess,
     ]
   );

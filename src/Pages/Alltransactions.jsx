@@ -15,6 +15,7 @@ import { EditTransactionContext } from "../Context/Transactions/editTransaction.
 import { AddTransactionContext } from "../Context/Transactions/addTransactions.context";
 import AddTransactionModel from "../components/Models/addTransactionModel";
 import { DeleteTransactionContext } from "../Context/Transactions/deleteTransaction.context";
+import { DashboardContext } from "../Context/userDashboard.context";
 
 function Transactions() {
   const { user, allTransactions } = useContext(AuthContext);
@@ -26,6 +27,7 @@ function Transactions() {
     setConfirmAction,
     confirmAction,
   } = useContext(MessageContext);
+  const dashboardLoading = useContext(DashboardContext).loading
 
   const {
     getAllTransactions,
@@ -37,7 +39,6 @@ function Transactions() {
     addTxnOpen,
     setAddTxnOpen,
     handleCloseError,
-    handleOnCancel,
     handleCloseSuccess,
   } = useContext(AllTransactionsContext);
 
@@ -135,10 +136,9 @@ function Transactions() {
         <ConfirmMessage
           value={AuthConfirm}
           onConfirm={(e) => handleOnConfirm(e)}
-          onCancel={(e) => handleOnCancel(e)}
         />
       )}
-      {(loading || logoutLoading || editLoading || addLoading || deleteLoading || localLoading) && <Loader />}
+      {(dashboardLoading || loading || logoutLoading || editLoading || addLoading || deleteLoading || localLoading) && <Loader />}
       <ProfileModule user={user} />
 
       <main className="flex-1 px-1 lg:px-6 py-6">

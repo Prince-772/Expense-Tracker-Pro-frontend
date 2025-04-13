@@ -3,19 +3,20 @@ import { AuthContext, MessageContext } from '../Auth.context';
 import { DashboardContext } from '../userDashboard.context';
 import { AllTransactionsContext } from '../allTransactions.context';
 import { useNavigate } from 'react-router-dom';
+import { LogOutContext } from '../logout.context';
 
 const PieChartContext = createContext()
 
 const PieChartProvider = ({ children }) => {
   const { user, allTransactions } = useContext(AuthContext);
-  const { getUser } = useContext(DashboardContext)
   const { getAllTransactions } = useContext(AllTransactionsContext)
   const [pieChartSelectionOpen, setPieChartSelectionOpen] = useState(false)
+  const { handleLogOut } = useContext(LogOutContext);
   const [pieOption, setPieOption] = useState("all")
   const [pieData, setPieData] = useState([])
   const [pieLoading, setPieLoading] = useState(false)
   const navigate = useNavigate()
-  const { setAuthError, setConfirmAction, confirmAction } = useContext(MessageContext);
+  const { setAuthError, setConfirmAction, confirmAction,setAuthConfirm } = useContext(MessageContext);
   const [lastIncome, setLastIncome] = useState({})
   const [lastExpense, setLastExpense] = useState({})
 
@@ -35,6 +36,7 @@ const PieChartProvider = ({ children }) => {
   //["All", "Last Five", "Last Ten", "Last 30 days", "Last 365 days"]
   useEffect(() => {
     let newTxns = []
+    setPieLoading(true)
     if (pieOption === "all") {
       setPieData([
         { name: 'Income', value: user?.totalIncome },
@@ -42,7 +44,7 @@ const PieChartProvider = ({ children }) => {
       ])
       setLastIncome(allTransactions?.find(txn => txn.transaction_type === "income"))
       setLastExpense(allTransactions?.find(txn => txn.transaction_type === "expense"))
-      return
+      return setPieLoading(false)
     } else if (pieOption === "last five") newTxns = allTransactions?.slice(0, 5)
     else if (pieOption === "last ten") newTxns = allTransactions?.slice(0, 10)
     else if (pieOption === "last 30 days") {
@@ -61,6 +63,7 @@ const PieChartProvider = ({ children }) => {
       { name: 'Income', value: income },
       { name: 'Expense', value: expense },
     ])
+    setPieLoading(false)
   }, [pieOption, allTransactions])
 
   const handleCloseError = useCallback(
@@ -78,10 +81,22 @@ const PieChartProvider = ({ children }) => {
     },
     [navigate, setAuthError, setConfirmAction, confirmAction]
   );
+  const handleOnConfirm = useCallback(
+    (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setAuthConfirm(null);
+      if (confirmAction === "deleteTransaction" || confirmAction === "editTransaction" || confirmAction === "addTransaction") {
+      } else handleLogOut();
+
+      setConfirmAction(null);
+    },
+    [confirmAction, setConfirmAction, setAuthConfirm, handleLogOut]
+  );
 
   const PieChartValue = useMemo(
-    () => ({ pieData, pieChartSelectionOpen, setPieChartSelectionOpen, pieOption, setPieOption, pieLoading, handleCloseError, lastIncome, lastExpense }),
-    [pieData, pieChartSelectionOpen, pieOption, pieLoading, handleCloseError, lastIncome, lastExpense])
+    () => ({ pieData, pieChartSelectionOpen, setPieChartSelectionOpen, pieOption, setPieOption, pieLoading, handleCloseError, lastIncome, lastExpense, handleOnConfirm}),
+    [pieData, pieChartSelectionOpen, pieOption, pieLoading, handleCloseError, lastIncome, lastExpense,handleOnConfirm])
   return (
     <PieChartContext.Provider value={PieChartValue}>
       {children}

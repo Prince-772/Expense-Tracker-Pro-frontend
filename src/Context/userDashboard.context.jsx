@@ -53,16 +53,6 @@ const DashboardProvider = ({ children }) => {
   }, []);
 
   
-
-  const handleOnCancel = useCallback(
-    (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      setAuthConfirm(null);
-      setConfirmAction(null);
-    },
-    [setAuthConfirm, setConfirmAction]
-  );
   const handleCloseSuccess = useCallback(
     (e) => {
       e.preventDefault();
@@ -94,7 +84,6 @@ const DashboardProvider = ({ children }) => {
     () => ({
       getUser,
       loading,
-      handleOnCancel,
       handleCloseSuccess,
       handleCloseError,
       addTxnOpen,
@@ -102,7 +91,6 @@ const DashboardProvider = ({ children }) => {
     ), [
       getUser,
       loading,
-      handleOnCancel,
       handleCloseSuccess,
       handleCloseError,
       addTxnOpen,

@@ -30,7 +30,6 @@ export default function Dashboard() {
   const {
     loading,
     getUser,
-    handleOnCancel,
     handleCloseSuccess,
     handleCloseError,
     addTxnOpen,
@@ -82,7 +81,6 @@ export default function Dashboard() {
         <ConfirmMessage
           value={AuthConfirm}
           onConfirm={handleOnConfirm}
-          onCancel={handleOnCancel}
         />
       )}
       {(loading || logoutLoading || addLoading) && <Loader />}

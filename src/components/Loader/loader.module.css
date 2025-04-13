@@ -1,14 +1,17 @@
-
-.loaderBar {
-  background: linear-gradient(90deg, #9ed7ff, #62ff42, #00fffb);
-  animation: color-move 2s cubic-bezier(0.56, 0, 0.15, 0.99) infinite;
+.logoBox{
+  background: linear-gradient(to right, #000 85%,#00c6ff,#30cb11,#000);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-size: 200% 100%;
+  animation: color-move 2s ease-out infinite;
 }
 
 @keyframes color-move {
   0% {
-    left: -100%;
+    background-position: 0 0;
   }
   100% {
-    left: 100%;
+    background-position: -125% 0;
   }
 }

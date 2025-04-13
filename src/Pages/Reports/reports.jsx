@@ -6,15 +6,18 @@ import { PieChartContext } from '../../Context/Reports/piechart.context';
 import { ChevronDown, Minus, TrendingDown, TrendingUp } from 'lucide-react';
 import Loader from '../../components/Loader/loader';
 import ErrorMessage from '../../components/authMessages/ErrorMessage';
+import { DashboardContext } from '../../Context/userDashboard.context';
+import ConfirmMessage from '../../components/authMessages/ConfirmMessage';
 
 const Reports = () => {
   console.log("Reports rendered");
   const { user } = useContext(AuthContext);
-  const { pieData, pieChartSelectionOpen, setPieChartSelectionOpen, pieOption, setPieOption, pieLoading, handleCloseError, lastIncome, lastExpense } = useContext(PieChartContext)
+  const { pieData, pieChartSelectionOpen, setPieChartSelectionOpen, pieOption, setPieOption, pieLoading, handleCloseError, lastIncome, lastExpense, handleOnConfirm, } = useContext(PieChartContext)
   const {
     AuthError,
+    AuthConfirm
   } = useContext(MessageContext);
-  console.log(pieData);
+  const dashboardLoading = useContext(DashboardContext).loading
 
 
   const COLORS = ['#22c55e', '#ef4444'];
@@ -31,7 +34,13 @@ const Reports = () => {
       {AuthError && (
         <ErrorMessage value={AuthError} onClose={(e) => handleCloseError(e)} />
       )}
-      {(pieLoading) && <Loader />}
+      {AuthConfirm && (
+        <ConfirmMessage
+          value={AuthConfirm}
+          onConfirm={handleOnConfirm}
+        />
+      )}
+      {(dashboardLoading || pieLoading) && <Loader />}
       <ProfileModule user={user} />
 
       <main className="flex-1 px-1 lg:px-6 py-6">
