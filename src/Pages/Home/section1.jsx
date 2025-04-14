@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 
 const Section1 = () => {
   return (
-    <div className="hero min-h-185 flex justify-center items-center px-5 flex-col">
+    <div className="hero min-h-185 flex justify-center items-center px-5 flex-col dark:bg-gray-700 dark:text-white">
       <div className="flex justify-center items-center w-[min(1100px,100%)] flex-col md:flex-row gap-3 md:gap-0">
         <div className="left w-full md:w-[50%] flex flex-1 flex-col items-center md:items-baseline gap-3 md:gap-0">
           <div className="header text-5xl md:text-7xl font-[Bebas_Neue] w-[min(100%,400px)] md:w-[55%] text-center md:text-left">

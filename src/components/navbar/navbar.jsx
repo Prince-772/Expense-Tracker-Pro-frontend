@@ -29,21 +29,21 @@ const NavBar = () => {
 
 
   return (
-    <nav className="sticky top-0 w-full flex items-center justify-between h-14 md:h-16 border-red-600 text-white px-4 bg-white shadow-gray-500/50 shadow-md z-99">
+    <nav className="sticky top-0 w-full flex items-center justify-between h-14 md:h-16 text-white px-4 bg-white dark:bg-gray-900 shadow-gray-500/50 dark:shadow-gray-600/50 shadow-md z-99">
       <div className="left w-full h-full flex items-center gap-1">
         {isSidebarOpen ? (
           <X
-            className="text-black p-0 hidden md:block lg:hidden w-7 h-7 cursor-pointer mr-2"
+            className="text-black dark:text-white p-0 hidden md:block lg:hidden w-7 h-7 cursor-pointer mr-2"
             onClick={() => setIsSidebarOpen(() => false)}
           />
         ) : (
           <Menu
-            className="text-black p-0 hidden md:block lg:hidden w-7 h-7 cursor-pointer mr-2"
+            className="text-black dark:text-white p-0 hidden md:block lg:hidden w-7 h-7 cursor-pointer mr-2"
             onClick={() => setIsSidebarOpen(() => true)}
           />
         )}
         <Logo />
-        <div className="nav ml-3 lg:ml-5 text-[15px] font-[inter] text-black hidden lg:flex relative">
+        <div className="nav ml-3 lg:ml-5 text-[15px] font-[inter] hidden lg:flex relative">
           <div className="flex items-center gap-4 w-full justify-between">
             {["/","/features", "/contact","/about"].some(path=> path === getLocation)
               ? [
@@ -60,8 +60,8 @@ const NavBar = () => {
                   }}
                   to={link.path}
                   className={`${tabOpen === link.label.toLowerCase()
-                      ? "text-green-600 border-b-2"
-                      : styles.navItems
+                      ? "text-green-600 dark:text-green-500 border-b-2"
+                      : `${styles.navItems} bg-[linear-gradient(to_right,_black_50%,_#155dfc_50%)]  dark:bg-[linear-gradient(to_right,_white_50%,_#155dfc_50%)] `
                     }`}
                 >
                   {link.label}
@@ -82,8 +82,8 @@ const NavBar = () => {
                   }}
                   to={link.path}
                   className={`${dashboardTabOpen === link.label.toLowerCase()
-                      ? "text-green-600 border-b-2"
-                      : styles.navItems
+                      ? "text-green-600 dark:text-green-500 border-b-2"
+                      :`${styles.navItems} bg-[linear-gradient(to_right,_black_50%,_#155dfc_50%)]  dark:bg-[linear-gradient(to_right,_white_50%,_#155dfc_50%)] `
                     }`}
                 >
                   {link.label}
@@ -96,12 +96,12 @@ const NavBar = () => {
       <div className="right h-full flex items-center gap-1">
         {isSidebarOpen ? (
           <X
-            className="text-black block md:hidden w-7 h-7 cursor-pointer"
+            className="text-black dark:text-white block md:hidden w-7 h-7 cursor-pointer"
             onClick={() => setIsSidebarOpen(() => false)}
           />
         ) : (
           <Menu
-            className="text-black block md:hidden w-7 h-7 cursor-pointer"
+            className="text-black dark:text-white block md:hidden w-7 h-7 cursor-pointer"
             onClick={() => setIsSidebarOpen(() => true)}
           />
         )}

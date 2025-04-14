@@ -1,6 +1,4 @@
 .navItems,.logout > p,.profile>div {
-  /* color: red; */
-  background: linear-gradient(to right, black 50%, #155dfc 50%);
   background-size: 200% 100%;
   background-clip: text;
   -webkit-background-clip: text;

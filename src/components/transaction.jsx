@@ -14,12 +14,12 @@ const TransactionCard = ({ type, amount, date, remarks }) => {
   });
 
   return (
-    <div className="flex justify-between items-center bg-white rounded-lg p-3 border border-gray-300 transition hover:shadow-md mb-2 w-full">
+    <div className="flex justify-between items-center bg-white dark:bg-gray-700 rounded-lg p-3 border border-gray-300 transition hover:shadow-md mb-2 w-full">
       <div className="flex flex-col w-full">
         <div className="line-clamp-1 ">
-          <p className="text-sm font-medium text-gray-700">{remarks}</p>
+          <p className="text-sm font-medium text-gray-700 dark:text-white">{remarks}</p>
         </div>
-        <p className="text-xs text-gray-500">{updatedDate}</p>
+        <p className="text-xs text-gray-500 dark:text-gray-300">{updatedDate}</p>
       </div>
 
       <div

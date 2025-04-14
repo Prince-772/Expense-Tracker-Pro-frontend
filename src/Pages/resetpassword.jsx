@@ -73,7 +73,7 @@ const ResetPassword = () => {
   );
 
   return (
-    <main className="w-full min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-gray-200 p-3">
+    <main className="w-full min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 p-3">
       {AuthSuccess && (
         <SuccessMessage value={AuthSuccess} onClose={handleCloseSuccess} />
       )}
@@ -81,7 +81,7 @@ const ResetPassword = () => {
         <ErrorMessage value={AuthError} onClose={handleCloseError} />
       )}
       {(loading || isSubmitting) && <Loader />}
-      <div className="w-[min(100%,400px)] bg-white shadow-lg rounded-xl py-8 px-3 sm:px-8">
+      <div className="w-[min(100%,400px)] bg-white dark:bg-gray-600 shadow-lg dark:shadow-black/70 rounded-xl dark:text-gray-200 py-8 px-3 sm:px-8">
         <div className="inner-box flex flex-col gap-3">
           <div className="top flex flex-col gap-7">
             <div className="logo flex justify-center">
@@ -89,7 +89,7 @@ const ResetPassword = () => {
             </div>
 
             <div className="text">
-              <p className="header text-lg font-bold font-[roboto] text-center text-black">
+              <p className="header text-lg font-bold font-[roboto] text-center">
                 Reset Password
               </p>
               <div className="info mt-4">
@@ -126,17 +126,17 @@ const ResetPassword = () => {
                     },
                   })}
                   placeholder="Enter 6 digits Reset Code"
-                  className="py-1 px-3 text-lg rounded-md outline-none border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
+                  className="py-1 px-3 text-lg rounded-md outline-none border border-gray-300 dark:border-gray-800 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
                 />
                 {errors.reset_code && (
-                  <p className="text-red-500">{errors.reset_code.message}</p>
+                  <p className="text-red-500 dark:text-red-700">{errors.reset_code.message}</p>
                 )}
 
                 <div className="footer flex justify-center gap-1 text-black text-sm sm:text-base">
                   <p>Didn't receive the reset code?</p>
                   <Link
                     to="/forgetpassword"
-                    className="text-blue-700 hover:underline active:underline"
+                    className="text-blue-700 dark:text-blue-100 hover:underline active:underline"
                   >
                     Get code
                   </Link>
@@ -159,20 +159,20 @@ const ResetPassword = () => {
                       },
                     })}
                     placeholder="Create new password"
-                    className="py-1 px-3 pr-8 text-lg rounded-md outline-none border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all w-full"
+                    className="py-1 px-3 pr-8 text-lg rounded-md outline-none border border-gray-300 dark:border-gray-800 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all w-full"
                   />
 
                   <button
                     type="button"
                     onClick={togglePassword}
                     aria-label="Toggle password visibility"
-                    className="absolute right-1 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 active:text-gray-700 transition"
+                    className="absolute right-1 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 active:text-gray-700 dark:text-gray-100 dark:hover:text-gray-300 dark:active:text-gray-300 cursor-pointer transition"
                   >
                     {showPassword ? <Eye size={22} /> : <EyeOff size={22} />}
                   </button>
                 </div>
                 {errors.new_password && (
-                  <p className="text-red-500">
+                  <p className="text-red-500 dark:text-red-700">
                     {errors.new_password.message}
                   </p>
                 )}
@@ -189,13 +189,13 @@ const ResetPassword = () => {
                         "Passwords do not match",
                     })}
                     placeholder="Confirm Password"
-                    className="py-1 px-3 pr-8 text-lg rounded-md outline-none border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all w-full"
+                    className="py-1 px-3 pr-8 text-lg rounded-md outline-none border border-gray-300 dark:border-gray-800 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all w-full"
                   />
                   <button
                     type="button"
                     onClick={toggleConfirmPassword}
                     aria-label="Toggle password visibility"
-                    className="absolute right-1 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 active:text-gray-700 transition"
+                    className="absolute right-1 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 active:text-gray-700 dark:text-gray-100 dark:hover:text-gray-300 dark:active:text-gray-300 cursor-pointer transition"
                   >
                     {showConfirmPassword ? (
                       <Eye size={22} />
@@ -205,7 +205,7 @@ const ResetPassword = () => {
                   </button>
                 </div>
                 {errors.confirm_password && (
-                  <p className="text-red-500">
+                  <p className="text-red-500 dark:text-red-700">
                     {errors.confirm_password.message}
                   </p>
                 )}

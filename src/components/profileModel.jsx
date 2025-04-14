@@ -30,7 +30,7 @@ const ProfileModule = ({ user }) => {
       <div
         onClick={() => setIsProfileOpen(false)}
         className={`fixed z-6 inset-0 ${isProfileOpen ? path === "/dashboard" ? "lg:hidden" : "" : "hidden"}`}></div>
-      <div className={`profile z-6 w-full md:w-105 [position:inherit] bg-blue-100 md:left-[calc(50%-210px)] transition-all duration-300 ease-in-out 
+      <div className={`profile z-6 w-full md:w-105 [position:inherit] bg-blue-100 dark:bg-gray-700 md:left-[calc(50%-210px)] transition-all duration-300 ease-in-out 
         ${isProfileOpen ?
           (path === "/dashboard" ? "h-120 translate-y-0 opacity-100 lg:h-full rounded-t-lg md:rounded-xl lg:rounded-l-none"
             : "h-120 translate-y-0 opacity-100 rounded-t-lg md:rounded-xl")
@@ -54,12 +54,12 @@ const ProfileModule = ({ user }) => {
           <div className="avtar aspect-square border-2 font-[roboto] w-20 md:w-30 rounded-[50%] flex items-center justify-center text-3xl md:text-5xl bg-green-500">
             {user?.name.charAt(0).toUpperCase()}
           </div>
-          <div className="name mt-3 text-lg md:text-xl font-semibold font-[inter] overflow-x-scroll text-nowrap w-full text-center scrollbar-hide  ">
+          <div className="name mt-3 text-lg md:text-xl font-semibold font-[inter] overflow-x-scroll text-nowrap w-full text-center scrollbar-hide dark:text-white ">
             {user?.name}
           </div>
         </div>
         <hr className="mx-2 text-gray-500" />
-        <div className="px-2 py-5 flex justify-center items-start flex-col gap-1 text-sm md:text-base">
+        <div className="px-2 py-5 flex justify-center items-start flex-col gap-1 text-sm md:text-base dark:text-white">
           <div className="email font-semibold font-[inter] overflow-x-scroll text-nowrap w-full scrollbar-hide ">
             Email : {user?.email}
           </div>

@@ -1,11 +1,11 @@
 const Section2 = ()=>{
   return (
-    <div className="justify-center items-center flex md:px-5 flex-col gap-5 min-h-185 py-20 text-[#333333]">
+    <div className="justify-center items-center flex md:px-5 flex-col gap-5 min-h-185 py-20 text-[#333333] dark:bg-gray-700 dark:text-[#e9e9e9]">
       <div className="header flex justify-center w-full">
         <p className="text-[35px] md:text-[48px] lg:text-[56px] md:w-[330px] leading-11 md:leading-15 lg:leading-17 text-center font-[Lilita_One]">Key Features Overview</p>
       </div>
       <div className="features flex flex-col lg:flex-row items-center lg:justify-evenly gap-8 w-[min(1150px,100%)]">
-        <div className="feature-card animate-on-scroll flex-1 lg:h-120 w-[min(90%,500px)] lg:w-[min(100%,370px)] bg-[rgba(127,127,127,0.2)] rounded-lg flex flex-col px-2 md:px-5 py-10">
+        <div className="feature-card animate-on-scroll flex-1 lg:h-120 w-[min(90%,500px)] lg:w-[min(100%,370px)] bg-[rgba(127,127,127,0.2)] dark:bg-gray-800 rounded-lg flex flex-col px-2 md:px-5 py-10">
           <div className="top min-h-60 flex-1 rounded-t-lg flex justify-center">
             <div className="relative w-[175px] h-[175px]">
               <img src="/images/Oval.svg" alt="" className="absolute top-18 left-18 w-22 h-22" />
@@ -19,7 +19,7 @@ const Section2 = ()=>{
             <p className="content mt-1 leading-loose font-[Assistant] text-center lg:text-left">Effortlessly monitor income and expenses. Gain insights into spending habits with Expense Tracker Pro's intuitive interface and powerful reporting tools.</p>
           </div>
         </div>
-        <div className="feature-card animate-on-scroll flex-1 lg:h-120 w-[min(90%,500px)] lg:w-[min(100%,370px)] bg-[rgba(127,127,127,0.2)] rounded-lg flex flex-col px-2 md:px-5 py-10">
+        <div className="feature-card animate-on-scroll flex-1 lg:h-120 w-[min(90%,500px)] lg:w-[min(100%,370px)] bg-[rgba(127,127,127,0.2)] dark:bg-gray-800 rounded-lg flex flex-col px-2 md:px-5 py-10">
           <div className="top min-h-60 flex-1 rounded-t-lg flex justify-center">
             <div className="relative w-[175px] h-[175px]">
               <img src="/images/Oval.svg" alt="" className="absolute top-18 left-18 w-22 h-22" />
@@ -33,7 +33,7 @@ const Section2 = ()=>{
             <p className="content mt-1 leading-loose font-[Assistant] text-center lg:text-left">Visualize spending patterns. Make informed decisions. Expense Tracker Pro's detailed reports provide clarity. Achieve financial goals with confidence and ease.</p>
           </div>
         </div>
-        <div className="feature-card animate-on-scroll flex-1 lg:h-120 w-[min(90%,500px)] lg:w-[min(100%,370px)] bg-[rgba(127,127,127,0.2)] rounded-lg flex flex-col px-2 md:px-5 py-10">
+        <div className="feature-card animate-on-scroll flex-1 lg:h-120 w-[min(90%,500px)] lg:w-[min(100%,370px)] bg-[rgba(127,127,127,0.2)] dark:bg-gray-800 rounded-lg flex flex-col px-2 md:px-5 py-10">
           <div className="top min-h-60 flex-1 rounded-t-lg flex justify-center">
             <div className="relative w-[175px] h-[175px]">
               <img src="/images/Oval.svg" alt="" className="absolute top-18 left-18 w-22 h-22" />

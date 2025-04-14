@@ -67,7 +67,7 @@ export default function Dashboard() {
   
 
   return (
-    <div className="flex min-h-[calc(100vh-56px)] md:min-h-[calc(100vh-64px)] bg-gray-100">
+    <div className="flex min-h-[calc(100vh-56px)] md:min-h-[calc(100vh-64px)] bg-gray-100 dark:bg-gray-700">
       {AuthError && (
         <ErrorMessage value={AuthError} onClose={handleCloseError} />
       )}
@@ -87,9 +87,9 @@ export default function Dashboard() {
       {/* Main Content */}
       <ProfileModule user={user} />
       <main className="flex-1 px-3 lg:px-6 py-6">
-        <div className="flex flex-col gap-3 mb-6 bg-white p-3 shadow-md rounded-md">
-          <h1 className="text-xl md:text-2xl font-semibold text-gray-800">
-            Hello, <span className="text-blue-600">{user?.name || ""}</span>!
+        <div className="flex flex-col gap-3 mb-6 bg-white dark:bg-gray-800 p-3 shadow-md rounded-md">
+          <h1 className="text-xl md:text-2xl font-semibold text-gray-800 dark:text-gray-100">
+            Hello, <span className="text-blue-600 dark:text-blue-400">{user?.name || ""}</span>!
           </h1>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             <IncomeCard value={`${user?.totalIncome}`} />
@@ -99,8 +99,8 @@ export default function Dashboard() {
         </div>
 
         {/* Transactions List */}
-        <div className="bg-white p-4 shadow-md rounded-lg">
-          <h2 className="text-lg font-semibold mb-4">
+        <div className="bg-white dark:bg-gray-800 p-4 shadow-md rounded-lg">
+          <h2 className="text-lg font-semibold mb-4 dark:text-gray-100">
             Recent Five Transactions
           </h2>
           <div className="transaction-list">
@@ -129,7 +129,7 @@ export default function Dashboard() {
         {/* Floating Add Transaction Button */}
         <button
           onClick={() => setAddTxnOpen(true)}
-          className="fixed bottom-6 right-6 bg-blue-500 hover:bg-blue-600 active:bg-blue-600 active:scale-90 transition duration-300 ease-out text-white p-4 rounded-full shadow-md shadow-gray-500 cursor-pointer">
+          className="fixed bottom-6 right-6 bg-blue-500 hover:bg-blue-600 dark:bg-blue-700 dark:hover:bg-blue-800 active:bg-blue-600 dark:active:bg-blue-800 active:scale-90 transition duration-300 ease-out text-white p-4 rounded-full shadow-md shadow-gray-500 dark:shadow-gray-900 cursor-pointer">
           <Plus />
         </button>
       </main>

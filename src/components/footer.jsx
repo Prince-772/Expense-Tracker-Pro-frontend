@@ -9,7 +9,7 @@ import LinkedInIcon from "../assets/icons/linkedIn.svg";
 
 const Footer = () => {
   return (
-    <footer className='w-full flex flex-col px-5 py-10 md:px-10 md:pt-20 bg-gray-100'>
+    <footer className='w-full flex flex-col px-5 py-10 md:px-10 md:pt-20 bg-gray-100 dark:bg-gray-900'>
       
       {/* Top Section */}
       <div className="top flex flex-col gap-10 lg:gap-5 lg:flex-row justify-between">
@@ -17,7 +17,7 @@ const Footer = () => {
         {/* Left Section */}
         <div className="box-1 w-full text-center lg:text-left">
           <Logo />
-          <p className='mt-5 lg:mt-10 text-sm md:text-base text-gray-700'>
+          <p className='mt-5 lg:mt-10 text-sm md:text-base text-gray-700 dark:text-gray-200'>
             Expense Tracker Pro helps you manage your finances efficiently with powerful tracking tools.
           </p>
           <Link
@@ -29,7 +29,7 @@ const Footer = () => {
         </div>
 
         {/* Links Section */}
-        <div className="box-2 w-full flex flex-col md:flex-row justify-between items-center text-base gap-7">
+        <div className="box-2 w-full flex flex-col md:flex-row justify-between items-center text-base gap-7 dark:text-gray-300">
           
           {/* Company Links */}
           <div className="links1 text-center md:text-left">
@@ -41,7 +41,7 @@ const Footer = () => {
                 { label: "FAQs", link: "/about" },
                 { label: "Support", link: "/support" }
               ].map(link => (
-                <li className='text-gray-800 hover:underline active:underline' key={link.label}>
+                <li className='text-gray-800 dark:text-gray-400 hover:underline active:underline' key={link.label}>
                   <Link to={link.link}>{link.label}</Link>
                 </li>
               ))}
@@ -58,7 +58,7 @@ const Footer = () => {
                 { label: "Terms & Conditions", link: "/termsandconditions" },
                 { label: "Privacy Policy", link: "/privacypolicy" }
               ].map(link => (
-                <li className='text-gray-800 hover:underline active:underline' key={link.label}>
+                <li className='text-gray-800 dark:text-gray-400 hover:underline active:underline' key={link.label}>
                   <Link to={link.link}>{link.label}</Link>
                 </li>
               ))}
@@ -74,8 +74,8 @@ const Footer = () => {
                 { label: "X", link: "https://x.com/Prince_K772", icon: XIcon },
                 { label: "LinkedIn", link: "https://www.linkedin.com/in/prince-kushwaha-b2163032b/", icon: LinkedInIcon }
               ].map(social => (
-                <a href={social.link} target="_blank" rel="noopener noreferrer" className='flex items-center justify-center md:justify-start gap-2 text-gray-800 hover:underline active:underline font-semibold' key={social.label}>
-                  <img src={social.icon} alt={social.label} className='w-6 md:w-7' />
+                <a href={social.link} target="_blank" rel="noopener noreferrer" className='flex items-center justify-center md:justify-start gap-2 text-gray-800 dark:text-gray-400 hover:underline active:underline font-semibold' key={social.label}>
+                  <img src={social.icon} alt={social.label} className='w-6 md:w-7 dark:invert-70' />
                   {social.label}
                 </a>
               ))}
@@ -87,7 +87,7 @@ const Footer = () => {
 
       {/* Bottom Section */}
       <hr className='mt-10 md:mt-20 mb-5 border-gray-300' />
-      <div className="text-center text-sm md:text-base text-gray-600 pb-5">
+      <div className="text-center text-sm md:text-base text-gray-600 dark:text-gray-200 pb-5">
         &copy; 2025 Expense Tracker Pro. All rights reserved.
       </div>
     </footer>

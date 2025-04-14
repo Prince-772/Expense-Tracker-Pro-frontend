@@ -122,7 +122,7 @@ function Transactions() {
 
 
   return (
-    <div className="flex min-h-[calc(100vh-56px)] md:min-h-[calc(100vh-64px)] bg-gray-100">
+    <div className="flex min-h-[calc(100vh-56px)] md:min-h-[calc(100vh-64px)] bg-gray-100 dark:bg-gray-700">
       {AuthError && (
         <ErrorMessage value={AuthError} onClose={(e) => handleCloseError(e)} />
       )}
@@ -142,12 +142,12 @@ function Transactions() {
       <ProfileModule user={user} />
 
       <main className="flex-1 px-1 lg:px-6 py-6">
-        <div className="bg-white px-2 py-2 md:p-4 shadow-md rounded-lg flex flex-col gap-3">
-          <h2 className="text-lg font-semibold mb-1 text-center md:text-left">Your Transactions</h2>
+        <div className="bg-white dark:bg-gray-800 px-2 py-2 md:p-4 shadow-md rounded-lg flex flex-col gap-3">
+          <h2 className="text-lg font-semibold mb-1 text-center md:text-left dark:text-gray-100">Your Transactions</h2>
           <div className="h-8 md:h-10 flex justify-between gap-2">
             {/* Search Input */}
-            <div className="relative flex items-center w-[min(80%,400px)] border border-gray-300 rounded-md bg-white focus-within:shadow-sm focus-within:md:shadow-md">
-              <Search size={18} className="absolute left-1 md:left-3 text-black" />
+            <div className="relative flex items-center w-[min(80%,400px)] border border-gray-300 rounded-md bg-white dark:bg-gray-600 dark:text-gray-100 focus-within:shadow-sm focus-within:md:shadow-md">
+              <Search size={18} className="absolute left-1 md:left-3 text-black dark:text-gray-100" />
               <input
                 type="text"
                 onChange={(e) => setSearch(e.target.value)}
@@ -159,15 +159,15 @@ function Transactions() {
               {/* Sorting Button */}
               <div
                 onClick={() => setIsSortOpen(prev => !prev)}
-                className="z-1 flex relative items-center gap-1 border border-gray-300 rounded-md px-1 md:px-3 py-2 bg-white cursor-pointer shadow-sm hover:bg-gray-100 active:bg-gray-100 transition">
-                <p className="text-sm font-medium text-gray-700 hidden md:block">{sort.charAt(0).toUpperCase() + sort.slice(1)}</p>
-                <ArrowUpDown className={`text-gray-600 w-4 h-4 md:w-4.5 md:h-4.5 ${isSortOpen ? "rotate-540" : ""} transition-all duration-300`} />
-                <div className={`dropdown absolute top-full right-1/2 bg-white shadow-gray-500 flex flex-col rounded-sm overflow-hidden ${isSortOpen ? "max-h-30 max-w-100 shadow-[0_0_2px_1px]" : "max-h-0 max-w-0 border-none"} transition-all duration-300 ease-in-out `}>
+                className="z-1 flex relative items-center gap-1 border border-gray-300 rounded-md px-1 md:px-3 py-2 bg-white dark:bg-gray-600 cursor-pointer shadow-sm hover:bg-gray-100 active:bg-gray-100 dark:hover:bg-gray-700 dark:active:bg-gray-700 transition">
+                <p className="text-sm font-medium text-gray-700 dark:text-white hidden md:block">{sort.charAt(0).toUpperCase() + sort.slice(1)}</p>
+                <ArrowUpDown className={`text-gray-600 dark:text-white w-4 h-4 md:w-4.5 md:h-4.5 ${isSortOpen ? "rotate-540" : ""} transition-all duration-300`} />
+                <div className={`dropdown absolute top-full right-1/2 bg-white dark:bg-gray-800 shadow-gray-500 flex flex-col rounded-sm overflow-hidden ${isSortOpen ? "max-h-30 max-w-100 shadow-[0_0_2px_1px]" : "max-h-0 max-w-0 border-none"} transition-all duration-300 ease-in-out `}>
                   {["Latest", "Oldest", "Lowest First", "Highest First"].map(opt => (
                     <button
                       key={opt}
                       onClick={() => setSort(opt.toLocaleLowerCase())}
-                      className={`${sort === opt.toLowerCase() ? "bg-green-100" : "hover:bg-blue-100 active:bg-blue-100"} px-3 py-[1px] text-sm cursor-pointer w-full text-nowrap`}
+                      className={`${sort === opt.toLowerCase() ? "bg-green-100 dark:bg-green-700" : "hover:bg-blue-100 dark:hover:bg-blue-900 active:bg-blue-100 dark:active:bg-blue-900"} dark:text-white px-3 py-[1px] text-sm cursor-pointer w-full text-nowrap`}
                     >
                       {opt}
                     </button>
@@ -177,15 +177,15 @@ function Transactions() {
               {/* Filter Button */}
               <div
                 onClick={() => setIsFilterOpen(prev => !prev)}
-                className="z-1 flex relative items-center gap-1 border border-gray-300 rounded-md px-1 md:px-3 py-2 bg-white cursor-pointer shadow-sm hover:bg-gray-100 active:bg-gray-100 transition">
-                <p className="text-xs md:text-sm font-medium text-gray-700">{filter.charAt(0).toUpperCase() + filter.slice(1)}</p>
-                <ChevronDown className={`text-gray-600 w-4 h-4 md:w-4.5 md:h-4.5 ${isFilterOpen ? "rotate-540" : ""} transition-all duration-300`} />
-                <div className={`dropdown absolute top-full right-1/2 bg-white shadow-gray-500 flex flex-col rounded-sm overflow-hidden ${isFilterOpen ? "max-h-20 max-w-100 shadow-[0_0_2px_1px]" : "max-h-0 max-w-0 border-none"} transition-all duration-300 ease-in-out `}>
+                className="z-1 flex relative items-center gap-1 border border-gray-300 rounded-md px-1 md:px-3 py-2 bg-white dark:bg-gray-600 cursor-pointer shadow-sm hover:bg-gray-100 active:bg-gray-100 dark:hover:bg-gray-700 dark:active:bg-gray-700 transition">
+                <p className="text-xs md:text-sm font-medium text-gray-700 dark:text-white">{filter.charAt(0).toUpperCase() + filter.slice(1)}</p>
+                <ChevronDown className={`text-gray-600 dark:text-white w-4 h-4 md:w-4.5 md:h-4.5 ${isFilterOpen ? "rotate-540" : ""} transition-all duration-300`} />
+                <div className={`dropdown absolute top-full right-1/2 bg-white dark:bg-gray-800 shadow-gray-500 flex flex-col rounded-sm overflow-hidden ${isFilterOpen ? "max-h-20 max-w-100 shadow-[0_0_2px_1px]" : "max-h-0 max-w-0 border-none"} transition-all duration-300 ease-in-out `}>
                   {["All", "Expense", "Income"].map(opt => (
                     <button
                       key={opt}
                       onClick={() => setFilter(opt.toLocaleLowerCase())}
-                      className={`${filter === opt.toLowerCase() ? "bg-green-100" : "hover:bg-blue-100 active:bg-blue-100"} px-3 py-[1px] text-sm cursor-pointer w-full`}
+                      className={`${filter === opt.toLowerCase() ? "bg-green-100 dark:bg-green-700" : "hover:bg-blue-100 dark:hover:bg-blue-900 active:bg-blue-100 dark:active:bg-blue-900"} dark:text-white px-3 py-[1px] text-sm cursor-pointer w-full`}
                     >
                       {opt}
                     </button>
@@ -235,7 +235,7 @@ function Transactions() {
         </div>
         <button
           onClick={() => setAddTxnOpen(true)}
-          className="fixed bottom-6 right-6 bg-blue-500 hover:bg-blue-600 active:bg-blue-600 active:scale-90 transition duration-300 ease-out text-white p-4 rounded-full shadow-md shadow-gray-500 cursor-pointer"
+          className="fixed bottom-6 right-6 bg-blue-500 hover:bg-blue-600 active:bg-blue-600 active:scale-90 transition duration-300 ease-out text-white dark:bg-blue-700 dark:hover:bg-blue-800 dark:active:bg-blue-800 p-4 rounded-full shadow-md shadow-gray-500 dark:shadow-gray-900 cursor-pointer"
         >
           <Plus />
         </button>
