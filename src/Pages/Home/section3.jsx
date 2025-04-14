@@ -6,8 +6,8 @@ const Section3 = () => {
           <div className="left  w-full lg:w-1/2 flex justify-center lg:justify-start">
             <p className="text-[35px] md:text-[48px] lg:text-[56px] md:w-[330px] leading-11 md:leading-15 lg:leading-17 font-[Lilita_One] text-center lg:text-left">Our Services Overview</p>
           </div>
-          <div className="right  w-full lg:w-1/2 flex items-center">
-            <p className="text-base md:text-lg text-center lg:text-left ml-10">Expense Tracker Pro offers comprehensive financial solutions. Budgeting tools, insightful analytics, and personalized support. Achieve financial success with our expert guidance.</p>
+          <div className="right w-full lg:w-1/2 flex items-center">
+            <p className="text-base md:text-lg text-center lg:text-left mx-5 lg:mx-0 lg:ml-10">Expense Tracker Pro offers comprehensive financial solutions. Budgeting tools, insightful analytics, and personalized support. Achieve financial success with our expert guidance.</p>
           </div>
         </div>
 
