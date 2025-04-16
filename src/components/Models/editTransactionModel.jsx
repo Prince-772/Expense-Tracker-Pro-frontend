@@ -42,7 +42,7 @@ const EditTransactionModal = ({ transaction, onCancel, onEdit }) => {
 
   return (
     <div className={`fixed ${styles.sep} inset-0 flex items-center justify-center bg-black/30 backdrop-blur-sm z-5 overflow-y-auto`}>
-      <main className="bg-white dark:bg-gray-600 shadow-lg dark:shadow-gray-800 rounded-lg p-6 w-96">
+      <main className="bg-white dark:bg-gray-900 shadow-lg dark:shadow-gray-800 rounded-lg p-6 w-96">
         <h2 className="text-lg font-semibold text-gray-800 mb-4 dark:text-white">Edit Transaction</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
           {/* Remarks Input */}

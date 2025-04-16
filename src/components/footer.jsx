@@ -88,7 +88,7 @@ const Footer = () => {
       {/* Bottom Section */}
       <hr className='mt-10 md:mt-20 mb-5 border-gray-300' />
       <div className="text-center text-sm md:text-base text-gray-600 dark:text-gray-200 pb-5">
-        &copy; 2025 Expense Tracker Pro. All rights reserved.
+        &copy; {new Date().getFullYear()} Expense Tracker Pro. All rights reserved.
       </div>
     </footer>
   );

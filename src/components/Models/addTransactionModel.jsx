@@ -31,7 +31,7 @@ const AddTransactionModel = ({ onAddTransaction, onCancel }) => {
   }, [])
   return (
     <div className={`fixed inset-0 flex ${styles.sep} items-center justify-center bg-gray-600/30 backdrop-blur-sm z-11 overflow-y-scroll`}>
-      <main className="bg-white dark:bg-gray-600 shadow-lg dark:shadow-gray-800 rounded-lg p-6 w-96">
+      <main className="bg-white dark:bg-gray-900 shadow-lg dark:shadow-gray-800 rounded-lg p-6 w-96">
         <h2 className="text-lg font-semibold text-gray-800 mb-4 dark:text-white">Add Transaction</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
           {/* Remarks Input */}

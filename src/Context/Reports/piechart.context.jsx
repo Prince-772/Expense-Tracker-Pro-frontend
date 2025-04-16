@@ -2,7 +2,7 @@ import React, { createContext, useCallback, useContext, useEffect, useMemo, useS
 import { AuthContext, MessageContext } from '../Auth.context';
 import { DashboardContext } from '../userDashboard.context';
 import { AllTransactionsContext } from '../allTransactions.context';
-import { useNavigate } from 'react-router-dom';
+import { data, useNavigate } from 'react-router-dom';
 import { LogOutContext } from '../logout.context';
 
 const PieChartContext = createContext()
@@ -47,10 +47,13 @@ const PieChartProvider = ({ children }) => {
       return setPieLoading(false)
     } else if (pieOption === "last five") newTxns = allTransactions?.slice(0, 5)
     else if (pieOption === "last ten") newTxns = allTransactions?.slice(0, 10)
-    else if (pieOption === "last 30 days") {
-
-    } else if (pieOption === "last 365 days") {
-
+    else {
+      const reqDate = Date.now() - ((pieOption === "last 30 days") ? (1000 * 60 * 60 * 24 * 30) : (1000 * 60 * 60 * 24 * 365))
+      newTxns = []
+      for (let txn of allTransactions) {
+        if (new Date(txn.createdAt).getTime() < reqDate) break
+        newTxns.push(txn)
+      }
     }
     let expense = 0, income = 0
     newTxns.forEach(txn => {
@@ -59,6 +62,8 @@ const PieChartProvider = ({ children }) => {
     })
     setLastIncome(newTxns?.find(txn => txn.transaction_type === "income"))
     setLastExpense(newTxns?.find(txn => txn.transaction_type === "expense"))
+    console.log(newTxns);
+    
     setPieData([
       { name: 'Income', value: income },
       { name: 'Expense', value: expense },
