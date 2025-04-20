@@ -179,9 +179,9 @@ const Sidebar = () => {
                   setIsProfileOpen((prev) => !prev)
                   setIsSidebarOpen(false)
                 }}
-                className="w-[80%] md:text-lg font-semibold text-white py-2 rounded-lg 
+                className={`w-[80%] md:text-lg font-semibold text-white py-2 rounded-lg 
             bg-gradient-to-r from-blue-400 to-blue-600 hover:to-blue-700 dark:from-blue-600 dark:to-blue-800 dark:hover:to-blue-900 shadow-md 
-            transition-all ease-out duration-200 active:scale-90 flex justify-center items-center gap-1"
+            transition-all ease-out duration-200 active:scale-90 flex justify-center items-center gap-1 ${path==="/profile"?"hidden":""}`}
               >
                 <CircleUserRound size={20} color="white" />
                 Profile

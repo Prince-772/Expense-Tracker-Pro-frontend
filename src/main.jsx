@@ -21,6 +21,8 @@ import AddingSoon from "./Pages/addingSoon";
 import NotFound from "./Pages/notFound";
 import Reports from "./Pages/Reports/reports";
 import PieChartProvider from "./Context/Reports/piechart.context";
+import Profile from "./Pages/Profile";
+import ProfileContextProvider from "./Context/profile.context";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -67,6 +69,7 @@ const router = createBrowserRouter([
       { path: "/budgets", element: <AddingSoon /> },
       { path: "/reports", element: <PieChartProvider><Reports /></PieChartProvider> },
       { path: "/subscriptions", element: <AddingSoon /> },
+      { path: "/profile", element: <ProfileContextProvider><Profile /></ProfileContextProvider> },
       { path: "*", element: <NotFound /> },
     ],
   },

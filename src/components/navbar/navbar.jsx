@@ -126,7 +126,7 @@ const NavBar = () => {
             <>
               <button
                 onClick={() => setIsProfileOpen((prev) => !prev)}
-                className={`${styles.profile} ${styles.btn} text-base rounded-md text-nowrap ${location.pathname === "/dashboard"?"lg:hidden":""}`}
+                className={`${styles.profile} ${styles.btn} text-base rounded-md text-nowrap ${location.pathname === "/dashboard"?"lg:hidden":location.pathname === "/profile"?"hidden":""}`}
               >
                 <div className="group flex items-center gap-1 w-full h-full px-4 py-1 border-2 border-green-600 rounded-sm">
                   <CircleUserRound

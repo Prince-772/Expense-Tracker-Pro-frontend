@@ -63,8 +63,8 @@ const ProfileModule = ({ user }) => {
           <div className="email font-semibold font-[inter] overflow-x-scroll text-nowrap w-full scrollbar-hide ">
             Email : {user?.email}
           </div>
-          <div className="profesion hidden font-semibold font-[inter] overflow-x-scroll text-nowrap w-full scrollbar-hide ">
-            Profession : Student
+          <div className="profesion font-semibold font-[inter] overflow-x-scroll text-nowrap w-full scrollbar-hide ">
+            Profession : {user?.profession || "Unknown"}
           </div>
         </div>
       </div>
