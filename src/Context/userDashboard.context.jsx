@@ -15,9 +15,9 @@ const DashboardContext = createContext();
 
 const DashboardProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
-  const { user, setUser,setLastFiveTransaction } =
+  const { user, setUser, setLastFiveTransaction } =
     useContext(AuthContext);
-  const {setAuthError,setConfirmAction,setAuthConfirm,setAuthSuccess,confirmAction} = useContext(MessageContext);
+  const { setAuthError, setConfirmAction, setAuthSuccess, confirmAction } = useContext(MessageContext);
   const navigate = useNavigate()
   const [addTxnOpen, setAddTxnOpen] = useState(false)
   // const {handleLogOut} = useContext()
@@ -32,27 +32,27 @@ const DashboardProvider = ({ children }) => {
       );
       const user = response.data.userInfo;
       const lastFiveTransactions = response.data.transactions;
-      
-      setUser(()=>user);
-      setLastFiveTransaction(()=>lastFiveTransactions)
+
+      setUser(() => user);
+      setLastFiveTransaction(() => lastFiveTransactions)
     } catch (err) {
-      if (["/dashboard","/transactions","/reports","/profile","/budgets"].some(path => path === location.pathname)) {
+      if (["/dashboard", "/transactions", "/reports", "/profile", "/budgets"].some(path => path === location.pathname)) {
         setAuthError(
           err.response?.data?.message ||
-            err.message ||
-            "An unexpected error occurred"
+          err.message ||
+          "An unexpected error occurred"
         );
       }
     } finally {
       setLoading(false);
     }
-  }, [ setUser, user]);
+  }, [setUser, user]);
 
   useEffect(() => {
     if (!user) getUser();
   }, []);
 
-  
+
   const handleCloseSuccess = useCallback(
     (e) => {
       e.preventDefault();
@@ -87,15 +87,16 @@ const DashboardProvider = ({ children }) => {
       handleCloseSuccess,
       handleCloseError,
       addTxnOpen,
-      setAddTxnOpen}
-    ), [
-      getUser,
-      loading,
-      handleCloseSuccess,
-      handleCloseError,
-      addTxnOpen,
       setAddTxnOpen
-    ]
+    }
+    ), [
+    getUser,
+    loading,
+    handleCloseSuccess,
+    handleCloseError,
+    addTxnOpen,
+    setAddTxnOpen
+  ]
   )
 
   return (
