@@ -9,7 +9,6 @@ import ErrorMessage from "../components/authMessages/ErrorMessage";
 import Loader from "../components/Loader/loader";
 
 const Signup = () => {
-  console.log("Signup is re-rendered");
 
   const { user,} = useContext(AuthContext);
   const { AuthError,setAuthError } = useContext(MessageContext);

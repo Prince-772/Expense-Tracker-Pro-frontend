@@ -9,7 +9,6 @@ import SuccessMessage from "../components/authMessages/SuccessMessage";
 import Loader from "../components/Loader/loader";
 
 const ForgetPassword = () => {
-  console.log("Forget password rendered");
   const { AuthError, setAuthError, AuthSuccess, setAuthSuccess } = useContext(MessageContext);
 
   const navigate = useNavigate();

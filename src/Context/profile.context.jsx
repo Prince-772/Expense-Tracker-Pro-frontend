@@ -2,31 +2,32 @@ import React, { createContext, useCallback, useContext, useMemo, useState } from
 import { useNavigate } from 'react-router-dom';
 import { AuthContext, MessageContext } from './Auth.context';
 import axios from 'axios';
-import { DashboardContext } from './userDashboard.context';
+import { LogOutContext } from './logout.context';
 
 const ProfileContext = createContext()
 
 
 const ProfileContextProvider = ({ children }) => {
   const navigate = useNavigate()
-  const { setAuthError, confirmAction, setConfirmAction, setAuthSuccess, } = useContext(MessageContext)
-  const {getUser} = useContext(DashboardContext)
+  const { setAuthError, confirmAction, setConfirmAction, setAuthSuccess, setAuthConfirm } = useContext(MessageContext)
+  const { setUser } = useContext(AuthContext)
   const [profileLoading, setProfileLoading] = useState(false)
   const path = location.pathname
+  const { handleLogOut, logoutLoading } = useContext(LogOutContext)
 
   const handleSaveChanges = useCallback(
-   async (details) => {
+    async (details) => {
       setProfileLoading(true)
       setAuthError(null)
       try {
         const api = import.meta.env.VITE_BACKEND_USERS_API
-        await axios.patch(`${api}/editprofile`, {
+        const response = await axios.patch(`${api}/editprofile`, {
           ...(details.newName && { newName: details.newName }),
           ...(details.newProfession && { newProfession: details.newProfession })
         }, { withCredentials: true })
         setAuthSuccess("Profile Updated");
-        getUser() //updating
-        
+        setUser(response.data.userInfo) //updating
+
       } catch (err) {
         if (path === "/profile") {
           setConfirmAction("editProfile")
@@ -39,7 +40,7 @@ const ProfileContextProvider = ({ children }) => {
       } finally {
         setProfileLoading(false)
       }
-    }, [path,getUser])
+    }, [path])
 
   const handleCloseSuccess = useCallback(
     (e) => {
@@ -68,9 +69,22 @@ const ProfileContextProvider = ({ children }) => {
     [navigate, setAuthError, setConfirmAction, confirmAction]
   );
 
+  const handleOnConfirm = useCallback(
+    (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setAuthConfirm(null);
+      if (!(confirmAction === "deleteTransaction") && !(confirmAction === "editTransaction") && !(confirmAction === "addTransaction") && !(confirmAction === "editProfile")) {
+        handleLogOut()
+      }
+      setConfirmAction(null);
+    },
+    [confirmAction, handleLogOut]
+  );
+
   const ProfileValues = useMemo(
-    () => ({ handleCloseError,profileLoading,handleCloseSuccess,handleSaveChanges  }),
-    [handleCloseError,profileLoading,handleCloseSuccess,handleSaveChanges ]
+    () => ({ handleCloseError, profileLoading, handleCloseSuccess, handleSaveChanges, handleOnConfirm, logoutLoading }),
+    [handleCloseError, profileLoading, handleCloseSuccess, handleSaveChanges, handleOnConfirm, logoutLoading]
   )
   return (
     <ProfileContext.Provider value={ProfileValues}>{children}</ProfileContext.Provider>

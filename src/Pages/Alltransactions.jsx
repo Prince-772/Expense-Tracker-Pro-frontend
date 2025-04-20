@@ -73,10 +73,8 @@ function Transactions() {
   
     return () => {
       controller.abort();
-      console.log("aborting...");
     };
   }, [user]);
-  console.log("Transactions Component Rendered");
 
   const [localLoading, setLocalLoading] = useState(false)
   const [openCardId, setOpenCardId] = useState(null);

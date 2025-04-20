@@ -28,7 +28,6 @@ const PieChartProvider = ({ children }) => {
 
     return () => {
       controller.abort();
-      console.log("aborting...");
     };
   }, [user]);
 
@@ -62,7 +61,6 @@ const PieChartProvider = ({ children }) => {
     })
     setLastIncome(newTxns?.find(txn => txn.transaction_type === "income"))
     setLastExpense(newTxns?.find(txn => txn.transaction_type === "expense"))
-    console.log(newTxns);
     
     setPieData([
       { name: 'Income', value: income },

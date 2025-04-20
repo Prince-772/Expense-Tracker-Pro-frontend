@@ -11,7 +11,6 @@ import {
 } from "../../Context/app.context";
 
 const NavBar = () => {
-  console.log("NavBar is re-rendered");
   const { ConfirmLogOut } = useContext(LogOutContext);
   const { setIsProfileOpen } = useContext(ProfileContext);
   const { setIsSidebarOpen, isSidebarOpen } = useContext(SideBarContext);
@@ -126,7 +125,7 @@ const NavBar = () => {
             <>
               <button
                 onClick={() => setIsProfileOpen((prev) => !prev)}
-                className={`${styles.profile} ${styles.btn} text-base rounded-md text-nowrap ${location.pathname === "/dashboard"?"lg:hidden":location.pathname === "/profile"?"hidden":""}`}
+                className={`${styles.profile} ${styles.btn} text-base rounded-md text-nowrap ${location.pathname === "/dashboard"?"lg:hidden":["/transactions","/reports"].some(path => path === location.pathname)?"":"hidden"}`}
               >
                 <div className="group flex items-center gap-1 w-full h-full px-4 py-1 border-2 border-green-600 rounded-sm">
                   <CircleUserRound

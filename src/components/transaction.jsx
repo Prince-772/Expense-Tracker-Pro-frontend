@@ -1,7 +1,6 @@
 import React from "react";
 
 const TransactionCard = ({ type, amount, date, remarks }) => {
-  console.log("Transaction Card Rendered", remarks);
 
   const updatedDate = new Date(date).toLocaleString("en-IN", {
     timeZone: "Asia/Kolkata",

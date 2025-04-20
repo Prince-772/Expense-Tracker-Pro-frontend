@@ -11,7 +11,6 @@ import ConfirmMessage from '../../components/authMessages/ConfirmMessage';
 import { LogOutContext } from '../../Context/logout.context';
 
 const Reports = () => {
-  console.log("Reports rendered");
   const { user } = useContext(AuthContext);
   const { pieData, pieChartSelectionOpen, setPieChartSelectionOpen, pieOption, setPieOption, pieLoading, handleCloseError, lastIncome, lastExpense, handleOnConfirm, } = useContext(PieChartContext)
   const {

@@ -8,7 +8,6 @@ import { AuthContext, MessageContext } from "../Context/Auth.context";
 import ErrorMessage from "../components/authMessages/ErrorMessage";
 import Loader from "../components/Loader/loader";
 const Login = () => {
-  console.log("Login is re-rendered");
 
   const { user, } = useContext(AuthContext);
   const { AuthError, setAuthError } = useContext(MessageContext);

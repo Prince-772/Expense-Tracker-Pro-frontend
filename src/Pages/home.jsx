@@ -4,7 +4,6 @@ import Section3 from "./Home/section3";
 import Footer from "../components/footer";
 
 const Home = () => {
-  console.log("Home page is re-rendered");
   return (
     <>
       <main className="w-full">

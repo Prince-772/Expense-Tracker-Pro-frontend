@@ -21,7 +21,7 @@ const ErrorMessage = ({ value, onClose }) => {
       {/* Popup Content */}
       <div className="bg-white dark:bg-gray-800 border border-gray-300 text-gray-800 px-4 md:px-6 py-5 rounded-lg shadow-lg z-50 flex flex-col items-center gap-3 w-[min(90%,320px)]">
         <CircleX size={28} className="text-red-600" />
-        <p className="md:text-xl font-medium text-center dark:text-white">{value}</p>
+        <p className="md:text-lg font-medium text-center dark:text-white">{value}</p>
 
         {onClose && (
           <button

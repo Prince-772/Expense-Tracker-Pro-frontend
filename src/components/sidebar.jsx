@@ -23,7 +23,6 @@ import {
 import { LogOutContext } from "../Context/logout.context";
 
 const Sidebar = () => {
-  console.log("Sidebar re-rendered");
   const { isSidebarOpen, setIsSidebarOpen } = useContext(SideBarContext);
   const { setIsProfileOpen } = useContext(ProfileContext);
   const { ConfirmLogOut } = useContext(LogOutContext);
@@ -181,7 +180,7 @@ const Sidebar = () => {
                 }}
                 className={`w-[80%] md:text-lg font-semibold text-white py-2 rounded-lg 
             bg-gradient-to-r from-blue-400 to-blue-600 hover:to-blue-700 dark:from-blue-600 dark:to-blue-800 dark:hover:to-blue-900 shadow-md 
-            transition-all ease-out duration-200 active:scale-90 flex justify-center items-center gap-1 ${path==="/profile"?"hidden":""}`}
+            transition-all ease-out duration-200 active:scale-90 flex justify-center items-center gap-1 ${["/dashboard","/transactions","/reports"].some(path_ => path_ === path)?"":"hidden"}`}
               >
                 <CircleUserRound size={20} color="white" />
                 Profile

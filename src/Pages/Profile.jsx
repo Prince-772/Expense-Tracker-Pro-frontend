@@ -1,4 +1,4 @@
-import React, { use, useCallback, useContext, useEffect, useRef, useState } from 'react'
+import React, { use, useCallback, useContext, useRef, useState } from 'react'
 import { AuthContext, MessageContext } from "../Context/Auth.context"
 import { ProfileContext } from '../Context/profile.context'
 import ErrorMessage from '../components/authMessages/ErrorMessage'
@@ -11,7 +11,7 @@ import { Pencil, X } from 'lucide-react'
 
 const Profile = () => {
   const { AuthError, AuthSuccess, AuthConfirm } = useContext(MessageContext)
-  const { handleCloseError, profileLoading, handleCloseSuccess, handleSaveChanges } = useContext(ProfileContext)
+  const { handleCloseError, profileLoading, handleCloseSuccess, handleSaveChanges, handleOnConfirm, logoutLoading } = useContext(ProfileContext)
   const { user } = useContext(AuthContext)
   const dashboardLoading = useContext(DashboardContext).loading
   const [isNameEdting, setIsNameEdting] = useState(false)
@@ -51,7 +51,7 @@ const Profile = () => {
           onConfirm={handleOnConfirm}
         />
       )}
-      {(dashboardLoading || profileLoading) && <Loader />}
+      {(dashboardLoading || profileLoading || logoutLoading) && <Loader />}
       {/* Main Content */}
       <main className="flex-1 px-3 lg:px-6 py-6">
         <div className="w-full border-2 rounded-2xl shadow-lg px-3 md:px-6 py-6 bg-white dark:bg-gray-600">
@@ -59,11 +59,11 @@ const Profile = () => {
 
             <div className="flex flex-col items-center gap-4">
               <div className="w-20 md:w-32 h-20 md:h-32 rounded-full bg-green-700 flex items-center justify-center">
-                <div className="text-xl md:text-3xl text-white font-semibold">PK</div>
+                <div className="text-2xl md:text-4xl text-white font-semibold">{user?.name.charAt(0).toUpperCase()}</div>
               </div>
 
               <div className={`name relative ${isNameEdting ? "" : "pr-7"}`}>
-                <div className={`text-lg md:text-2xl font-bold text-center outline-none dark:text-gray-300 ${isNameEdting ? "hidden" : "block"}`}>{user?.name}</div>
+                <div className={`text-lg md:text-2xl font-bold text-center outline-none dark:text-white ${isNameEdting ? "hidden" : "block"}`}>{user?.name}</div>
                 <input
                   className={`text-lg text-blue-500 dark:text-blue-400 w-full md:text-2xl font-bold text-center border-b-1 focus:border-blue-600 focus:dark:border-gray-200 outline-none ${isNameEdting ? "block pr-5 md:pr-7" : "hidden"}`}
                   defaultValue={user?.name}
@@ -89,8 +89,8 @@ const Profile = () => {
             <hr className='my-5 text-gray-400' />
             <div className="space-y-4 flex flex-col items-start">
               <div className={`profession relative flex justify-between ${isProfessionEdting ? "" : "pr-7"}`}>
-                <span className='text-sm md:text-lg font-semibold mr-1 text-nowrap dark:text-gray-300'>Profession : </span>
-                <div className={`text-sm md:text-lg font-semibold text-center dark:text-gray-300 ${isProfessionEdting ? "hidden" : "block"}`}>
+                <span className='text-sm md:text-lg font-semibold mr-1 text-nowrap text-gray-700 dark:text-gray-300'>Profession : </span>
+                <div className={`text-sm md:text-lg font-semibold text-center dark:text-gray-100 ${isProfessionEdting ? "hidden" : "block"}`}>
                   <span>{user?.profession || "Unknown"}</span>
                 </div>
                 <input
@@ -116,15 +116,15 @@ const Profile = () => {
               </div>
 
               <div className='flex'>
-                <span className='text-sm md:text-lg font-semibold mr-1 text-nowrap dark:text-gray-300'>Email : </span>
-                <div className={`text-sm md:text-lg font-semibold text-center dark:text-gray-300`}>
+                <span className='text-sm md:text-lg font-semibold mr-1 text-gray-700 text-nowrap dark:text-gray-300'>Email : </span>
+                <div className={`text-sm md:text-lg font-semibold text-center dark:text-gray-100`}>
                   <span>{user?.email}</span>
                 </div>
               </div>
 
               <div className='flex'>
-                <span className='text-sm md:text-lg font-semibold mr-1 dark:text-gray-300'>Joined On : </span>
-                <div className={`text-sm md:text-lg font-semibold text-center dark:text-gray-300`}>
+                <span className='text-sm md:text-lg font-semibold mr-1 text-gray-700 dark:text-gray-300'>Joined On : </span>
+                <div className={`text-sm md:text-lg font-semibold text-center dark:text-gray-100`}>
                   <span>{joinedDate || "Not available"}</span>
                 </div>
               </div>

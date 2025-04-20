@@ -16,7 +16,6 @@ import SuccessMessage from "../components/authMessages/SuccessMessage";
 
 export default function Dashboard() {
 
-  console.log("Dashboard Rerenderd");
 
   const { user,lastFiveTransactions} = useContext(AuthContext);
   const {
@@ -45,7 +44,6 @@ export default function Dashboard() {
     return () => {
       setAddTxnOpen(false)
       controller.abort()
-      console.log("dashboard aborting");
       
     }
   }, [])

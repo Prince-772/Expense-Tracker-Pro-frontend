@@ -5,7 +5,6 @@ const AllTransactionCard = ({ id, type, amount, date, remarks, isOpen, onToggle,
   const card = useRef(null);
   const [CardStyle, setCardStyle] = useState(null);
 
-  console.log("Transaction Card Rendered", remarks);
 
   const updatedDate = new Date(date).toLocaleString("en-IN", {
     timeZone: "IST",

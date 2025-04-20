@@ -7,7 +7,6 @@ const ProfileModule = ({ user }) => {
   const { isProfileOpen, setIsProfileOpen } = useContext(ProfileContext);
   const location = useLocation()
   const path = location.pathname
-  console.log("Profile module re rendered");
   useEffect(() => {
     if (isProfileOpen) {
       if (path !== "/dashboard") {
@@ -30,7 +29,7 @@ const ProfileModule = ({ user }) => {
       <div
         onClick={() => setIsProfileOpen(false)}
         className={`fixed z-6 inset-0 ${isProfileOpen ? path === "/dashboard" ? "lg:hidden" : "" : "hidden"}`}></div>
-      <div className={`profile z-6 w-full md:w-105 [position:inherit] bg-blue-100 dark:bg-gray-700 md:left-[calc(50%-210px)] transition-all duration-300 ease-in-out 
+      <div className={`profile z-6 w-full md:w-105 [position:inherit] bg-blue-100 dark:bg-[#000c21] md:left-[calc(50%-210px)] transition-all duration-300 ease-in-out 
         ${isProfileOpen ?
           (path === "/dashboard" ? "h-120 translate-y-0 opacity-100 lg:h-full rounded-t-lg md:rounded-xl lg:rounded-l-none"
             : "h-120 translate-y-0 opacity-100 rounded-t-lg md:rounded-xl")

@@ -10,7 +10,6 @@ import Loader from "../components/Loader/loader";
 import ErrorMessage from "../components/authMessages/ErrorMessage";
 
 const ResetPassword = () => {
-  console.log("reset password is re-rendered");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const {
