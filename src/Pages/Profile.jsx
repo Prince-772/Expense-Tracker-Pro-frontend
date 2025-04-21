@@ -139,6 +139,8 @@ const Profile = () => {
                   setIsDetailsChanged(false)
                   setIsNameEdting(false)
                   setIsProfessionEdting(false)
+                  nameRef.current.value = user?.name
+                  professionRef.current.value = user?.profession || ""
                 }}
               >Save Changes</button>
             </div>}
